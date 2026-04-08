@@ -3,41 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Career Roadmap | Apprentices Guide</title>
+    <title>Career Roadmap | ApprenticesGuide</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        :root { --indigo: #6366f1; --bg: #050505; }
+        body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: #e4e4e7; scroll-behavior: smooth; }
+        .glass-card { background: rgba(15, 15, 15, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); }
+        .roadmap-line { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--indigo), var(--indigo), transparent); z-index: 0; }
+        .node-glow { box-shadow: 0 0 20px var(--indigo), 0 0 40px rgba(99, 102, 241, 0.3); }
+        .step-card { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .step-card:hover { transform: translateY(-5px); border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        [x-cloak] { display: none !important; }
+    </style>
 </head>
-<body class="bg-[#0a0a0a] text-zinc-100">
-    <nav class="p-6 flex justify-between items-center border-b border-zinc-900">
-        <a href="index.html" class="font-bold uppercase tracking-widest text-sm">Roadmap Portal</a>
-        <a href="index.html" class="text-xs font-bold bg-white text-black px-4 py-2 rounded-full">Exit</a>
+<body x-data="{ activeTab: 'roadmap' }" class="min-h-screen">
+
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/10 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/5 blur-[120px] rounded-full"></div>
+    </div>
+
+    <nav class="glass-card sticky top-6 z-50 max-w-2xl mx-auto mt-6 rounded-2xl border border-white/5 p-2 flex gap-2">
+        <button @click="activeTab = 'roadmap'" :class="activeTab === 'roadmap' ? 'bg-indigo-600 text-white' : 'text-zinc-500 hover:text-white'" class="flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">Career Roadmap</button>
+        <button @click="activeTab = 'support'" :class="activeTab === 'support' ? 'bg-indigo-600 text-white' : 'text-zinc-500 hover:text-white'" class="flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">Official Channels</button>
+        <button @click="activeTab = 'advice'" :class="activeTab === 'advice' ? 'bg-indigo-600 text-white' : 'text-zinc-500 hover:text-white'" class="flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">Pro Advice</button>
     </nav>
 
-    <main class="max-w-3xl mx-auto px-6 py-20">
-        <h1 class="text-5xl font-extrabold mb-16 text-center">Your <span class="text-indigo-500">Timeline.</span></h1>
+    <main class="max-w-6xl mx-auto px-8 py-20">
         
-        <div class="space-y-12 border-l border-zinc-800 ml-4">
-            <div class="relative pl-12">
-                <div class="absolute -left-[6px] top-2 w-3 h-3 bg-indigo-500 rounded-full"></div>
-                <span class="text-indigo-500 font-bold text-xs uppercase tracking-widest">Phase 01</span>
-                <h3 class="text-xl font-bold mt-1">Initial Induction</h3>
-                <p class="text-zinc-400 text-sm mt-2">Completion of safety white cards, site-specific inductions, and basic tool identification.</p>
-            </div>
-            
-            <div class="relative pl-12">
-                <div class="absolute -left-[6px] top-2 w-3 h-3 bg-zinc-700 rounded-full"></div>
-                <span class="text-zinc-500 font-bold text-xs uppercase tracking-widest">Phase 02</span>
-                <h3 class="text-xl font-bold mt-1">Intermediate Skills</h3>
-                <p class="text-zinc-400 text-sm mt-2">Developing competency in fault finding and technical drawing interpretation.</p>
-            </div>
+        <div x-show="activeTab === 'roadmap'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" class="relative">
+            <header class="text-center mb-24">
+                <span class="text-indigo-500 text-[10px] font-black tracking-[0.5em] uppercase mb-4 block">The 2026 Trajectory</span>
+                <h1 class="text-6xl font-black tracking-tighter italic mb-4">Mastering the <span class="text-indigo-500">Trade.</span></h1>
+                <p class="text-zinc-500 max-w-xl mx-auto font-medium">A strategic breakdown of the South Australian Electrical Apprenticeship path.</p>
+            </header>
 
-            <div class="relative pl-12">
-                <div class="absolute -left-[6px] top-2 w-3 h-3 bg-zinc-700 rounded-full"></div>
-                <span class="text-zinc-500 font-bold text-xs uppercase tracking-widest">Phase 03</span>
-                <h3 class="text-xl font-bold mt-1">Trade Qualification</h3>
-                <p class="text-zinc-400 text-sm mt-2">Final capstone assessments and transitioning into a qualified tradesperson role.</p>
+            <div class="roadmap-line hidden md:block"></div>
+
+            <div class="space-y-24">
+                <div class="relative flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-[45%] step-card glass-card p-8 rounded-[2.5rem] relative">
+                        <span class="text-indigo-500 font-mono text-[9px] font-bold uppercase tracking-[0.3em] mb-4 block">Stage 01 // Fundamental</span>
+                        <h2 class="text-2xl font-black italic mb-4">Foundation & Safety</h2>
+                        <p class="text-zinc-400 text-sm leading-relaxed mb-6">Mastering the basics of industrial wiring, isolation procedures, and PEER or TAFE RTO units. Building the physical endurance for on-site rotations.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-zinc-900 rounded-full text-[9px] text-zinc-500 border border-white/5 uppercase font-bold">White Card</span>
+                            <span class="px-3 py-1 bg-zinc-900 rounded-full text-[9px] text-zinc-500 border border-white/5 uppercase font-bold">LOTO Training</span>
+                            <span class="px-3 py-1 bg-zinc-900 rounded-full text-[9px] text-zinc-500 border border-white/5 uppercase font-bold">eProfiling</span>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-zinc-950 border-4 border-indigo-500 node-glow z-10 items-center justify-center text-[10px] font-black text-white">1</div>
+                    <div class="md:w-[45%]"></div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row-reverse items-center justify-between">
+                    <div class="md:w-[45%] step-card glass-card p-8 rounded-[2.5rem] border-r-4 border-indigo-500">
+                        <span class="text-indigo-500 font-mono text-[9px] font-bold uppercase tracking-[0.3em] mb-4 block">Stage 02 // Integration</span>
+                        <h2 class="text-2xl font-black italic mb-4">Automation & Logic</h2>
+                        <p class="text-zinc-400 text-sm leading-relaxed mb-6">This is the pivot point. Focus on Motor Controls, PLC fault-finding, and complex circuitry. In industrial sites like JBS, this knowledge makes you indispensable.</p>
+                        <div class="p-4 bg-indigo-500/5 rounded-xl border border-indigo-500/20">
+                            <span class="text-indigo-400 text-[9px] font-black uppercase mb-1 block">2026 Focus:</span>
+                            <p class="text-zinc-300 text-xs italic">"Learn the software side. The gap between an electrician and a programmer is narrowing."</p>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-zinc-950 border-4 border-indigo-500 node-glow z-10 items-center justify-center text-[10px] font-black text-white">2</div>
+                    <div class="md:w-[45%]"></div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-[45%] step-card glass-card p-8 rounded-[2.5rem]">
+                        <span class="text-indigo-500 font-mono text-[9px] font-bold uppercase tracking-[0.3em] mb-4 block">Stage 03 // Completion</span>
+                        <h2 class="text-2xl font-black italic mb-4">Capstone & Licensing</h2>
+                        <p class="text-zinc-400 text-sm leading-relaxed mb-6">The Final Integrated Practical Assessment (FIPA). Validating your A-Class skills for Consumer and Business Services (CBS) registration.</p>
+                        <div class="flex items-center gap-4">
+                            <div class="flex-1 bg-zinc-900 h-2 rounded-full overflow-hidden">
+                                <div class="bg-indigo-500 h-full w-[85%] animate-pulse"></div>
+                            </div>
+                            <span class="text-[10px] font-black text-indigo-500">85% COMPLETE</span>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-zinc-950 border-4 border-indigo-500 node-glow z-10 items-center justify-center text-[10px] font-black text-white">3</div>
+                    <div class="md:w-[45%]"></div>
+                </div>
             </div>
         </div>
+
+        <div x-show="activeTab === 'support'" x-cloak x-transition:enter="transition ease-out duration-500" class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-black italic mb-12 text-center">Regulatory & <span class="text-indigo-500">Support.</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <a href="https://skillscommission.sa.gov.au" target="_blank" class="glass-card p-8 rounded-3xl hover:border-indigo-500 transition-all group">
+                    <i class="fas fa-gavel text-indigo-500 text-2xl mb-4"></i>
+                    <h3 class="text-lg font-black italic mb-2">SA Skills Commission</h3>
+                    <p class="text-zinc-500 text-xs mb-4">The ultimate authority for your training contract, disputes, and completion sign-offs.</p>
+                    <span class="text-[9px] font-black uppercase text-indigo-400 group-hover:underline">Visit Official Site →</span>
+                </a>
+                <div class="glass-card p-8 rounded-3xl">
+                    <i class="fas fa-hand-holding-usd text-emerald-500 text-2xl mb-4"></i>
+                    <h3 class="text-lg font-black italic mb-2">AASN Support</h3>
+                    <p class="text-zinc-500 text-xs">Providers like MEGT or MAS National. Contact them for completion incentives and travel allowances (LAFHA).</p>
+                </div>
+                <a href="https://safework.sa.gov.au" target="_blank" class="glass-card p-8 rounded-3xl hover:border-red-500 transition-all group">
+                    <i class="fas fa-shield-alt text-red-500 text-2xl mb-4"></i>
+                    <h3 class="text-lg font-black italic mb-2">SafeWork SA</h3>
+                    <p class="text-zinc-500 text-xs mb-4">Critical for reporting unsafe ratios or working conditions. Your safety is legally protected.</p>
+                    <span class="text-[9px] font-black uppercase text-red-400 group-hover:underline">Report Concern →</span>
+                </a>
+                <div class="glass-card p-8 rounded-3xl">
+                    <i class="fas fa-id-card text-indigo-500 text-2xl mb-4"></i>
+                    <h3 class="text-lg font-black italic mb-2">Consumer & Business Services</h3>
+                    <p class="text-zinc-500 text-xs">The body that issues your physical Electrical Worker's Registration (A-Class License).</p>
+                </div>
+            </div>
+        </div>
+
+        <div x-show="activeTab === 'advice'" x-cloak x-transition:enter="transition ease-out duration-500" class="max-w-3xl mx-auto space-y-8">
+            <div class="glass-card p-10 rounded-[3rem] border-l-8 border-indigo-600">
+                <h3 class="text-2xl font-black italic mb-4">The "Tech-Sparky" Advantage</h3>
+                <p class="text-zinc-400 text-md leading-relaxed mb-6 italic">"The industry in 2026 isn't just about hammers and pliers. Because you already understand web dev and code logic, you have a massive head start in Industrial Instrumentation."</p>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded bg-indigo-500/20 flex items-center justify-center text-indigo-500 mt-1">1</div>
+                        <p class="text-sm text-zinc-300"><strong>Log your PLC hours:</strong> If you are working on control panels at your company, make sure it's in your eProfiling. It counts toward high-level specialization.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-6 h-6 rounded bg-indigo-500/20 flex items-center justify-center text-indigo-500 mt-1">2</div>
+                        <p class="text-sm text-zinc-300"><strong>Networking:</strong> Get to know the Instrumentation Techs. Ask about Cert IV options for after you finish your A-Class.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
+
+    <footer class="p-12 border-t border-white/5 bg-[#080808]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-zinc-700 font-mono text-[10px] uppercase tracking-[0.5em]">
+                © 2026 ApprenticesGuide
+            </div>
+            <div class="flex gap-8 text-[9px] font-black text-zinc-800 uppercase tracking-[0.2em]">
+                <span>South Australia</span>
+                <span>Electrical Roadmap</span>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
