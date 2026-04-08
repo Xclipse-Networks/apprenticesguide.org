@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLC Simulator Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        :root { --indigo: #6366f1; --bg: #050505; }
+        body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: #e4e4e7; scroll-behavior: smooth; overflow-x: hidden; }
+        
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #050505;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .fadeOut { opacity: 0; pointer-events: none; }
+
+        .glass-card { 
+            background: rgba(18, 18, 18, 0.8); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(12px); 
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        .glass-card:hover { 
+            border-color: var(--indigo); 
+            transform: translateY(-8px);
+            background: rgba(25, 25, 25, 0.9);
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 10px var(--indigo);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <div id="loader">
+        <div class="relative mb-4">
+            <div class="w-16 h-16 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin"></div>
+            <div class="absolute inset-0 blur-xl bg-indigo-500/20 animate-pulse"></div>
+        </div>
+        <span class="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-500">Initializing Logic</span>
+    </div>
+
+    <nav class="glass-card sticky top-0 z-50 border-b border-white/5 px-8 py-5 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse shadow-[0_0_10px_#6366f1]"></div>
+            <span class="text-[10px] font-black uppercase tracking-widest text-zinc-400">Technical Hub</span>
+        </div>
+        <a href="learning-hub.html" class="text-[9px] font-black uppercase tracking-widest text-zinc-600 hover:text-white transition-colors">← Back to Hub</a>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-8 py-20 flex-grow w-full">
+        <header class="mb-20">
+            <span class="text-indigo-500 text-[11px] font-black tracking-[0.4em] uppercase mb-4 block">Simulation Environment</span>
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter text-white italic mb-6">PLC Simulator <span class="text-zinc-800">Hub.</span></h1>
+            <p class="text-zinc-500 max-w-xl text-lg leading-relaxed">
+                Cloud-based ladder logic simulations. Test control circuits in a virtual environment before field deployment.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <a href="https://app.plcsimulator.online/aLD6bBtF3yB2fBXgYMaI" target="_blank" class="glass-card group p-10 rounded-[3rem] relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8">
+                    <i class="fas fa-stopwatch text-indigo-500/20 text-5xl group-hover:scale-110 transition-transform duration-500"></i>
+                </div>
+                <div class="flex items-center mb-6">
+                    <span class="status-dot bg-indigo-500"></span>
+                    <span class="text-[9px] font-black uppercase text-zinc-500 tracking-widest">Logic: On-Delay</span>
+                </div>
+                <h2 class="text-3xl font-black text-white italic mb-4">⏱ Timer Circuit</h2>
+                <p class="text-zinc-500 text-sm leading-relaxed mb-8 max-w-xs">
+                    Automated shutdown sequence. Configured to cycle output after a 5-second accumulation.
+                </p>
+                <div class="flex items-center text-[10px] font-black uppercase tracking-widest text-indigo-400">
+                    Execute Simulation <i class="fas fa-external-link-alt ml-3"></i>
+                </div>
+            </a>
+
+            <a href="https://app.plcsimulator.online/dTelKkdSB1cbgICw8ibp" target="_blank" class="glass-card group p-10 rounded-[3rem] relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8">
+                    <i class="fas fa-toggle-on text-indigo-500/20 text-5xl group-hover:scale-110 transition-transform duration-500"></i>
+                </div>
+                <div class="flex items-center mb-6">
+                    <span class="status-dot bg-emerald-500"></span>
+                    <span class="text-[9px] font-black uppercase text-zinc-500 tracking-widest">Logic: Direct Control</span>
+                </div>
+                <h2 class="text-3xl font-black text-white italic mb-4">🔘 Push Button</h2>
+                <p class="text-zinc-500 text-sm leading-relaxed mb-8 max-w-xs">
+                    Standard momentary input simulation toggling a 24V DC light circuit simulation.
+                </p>
+                <div class="flex items-center text-[10px] font-black uppercase tracking-widest text-indigo-400">
+                    Execute Simulation <i class="fas fa-external-link-alt ml-3"></i>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <footer class="p-12 border-t border-white/5 bg-[#080808]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-zinc-600 font-mono text-[10px] uppercase tracking-widest">
+                © 2026 apprenticesguide
+            </div>
+            <div class="flex gap-8 text-[9px] font-black text-zinc-800 uppercase tracking-[0.2em]">
+                <span>Apprentice Resource</span>
+                <span>Automation Training</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('fadeOut');
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 800);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
