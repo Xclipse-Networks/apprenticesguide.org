@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEEEL0021 | Magnetic & Electromagnetic Devices</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #050505; color: #e4e4e7; scroll-behavior: smooth; }
+        .glass-card { background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); }
+        .topic-glow { transition: all 0.4s ease; }
+        .topic-glow:hover { border-color: rgba(99, 102, 241, 0.5); box-shadow: 0 0 30px rgba(99, 102, 241, 0.1); }
+        .formula-box { background: linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%); }
+    </style>
+</head>
+<body class="selection:bg-indigo-500/30">
+
+    <nav class="sticky top-0 z-50 px-6 py-4 flex justify-between items-center glass-card border-b border-white/5">
+        <div class="flex items-center gap-2">
+            <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
+            <a href="index.html" class="text-sm font-black tracking-tighter uppercase">Apprentices<span class="text-indigo-500">Guide</span></a>
+        </div>
+        <div class="flex items-center gap-6 text-[10px] font-bold tracking-widest text-zinc-500 uppercase">
+            <a href="#quick-ref" class="hover:text-white transition">Quick Ref</a>
+            <a href="learning-hub.html" class="hover:text-white transition">Learning Content</a>
+            <span class="text-indigo-500">UEEEL0021 v5.0</span>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        
+        <header class="mb-16">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-indigo-500 text-[10px] font-black tracking-[0.3em] uppercase">Core Technical Unit</span>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-white">Solve <span class="text-zinc-700">Problems.</span></h1>
+            <p class="text-zinc-500 mt-4 text-lg max-w-xl">Magnetic and electromagnetic devices study guide and technical repository.</p>
+        </header>
+
+        <section id="quick-ref" class="mb-24">
+            <h2 class="text-[10px] font-black text-zinc-600 uppercase tracking-[0.3em] mb-8">Quick Reference Vault</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="formula-box p-6 rounded-3xl border border-white/5">
+                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-2">Flux Density</p>
+                    <p class="text-2xl font-mono text-white">B = Φ / A</p>
+                </div>
+                <div class="formula-box p-6 rounded-3xl border border-white/5">
+                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-2">MMF</p>
+                    <p class="text-2xl font-mono text-white">Fm = NI</p>
+                </div>
+                <div class="formula-box p-6 rounded-3xl border border-white/5">
+                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-2">Field Strength</p>
+                    <p class="text-2xl font-mono text-white">H = Fm / l</p>
+                </div>
+                <div class="formula-box p-6 rounded-3xl border border-white/5">
+                    <p class="text-[10px] text-indigo-400 font-bold uppercase mb-2">Reluctance</p>
+                    <p class="text-2xl font-mono text-white">S = Fm / Φ</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="learning-content">
+            <div class="flex items-center justify-between mb-12">
+                <h2 class="text-3xl font-black text-white">Learning <span class="text-indigo-500">Content.</span></h2>
+                <div class="h-[1px] flex-grow mx-8 bg-zinc-800 hidden md:block"></div>
+                <span class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">7 Topics</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="glass-card p-8 rounded-[2rem] topic-glow">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6">
+                        <span class="text-indigo-500 font-mono font-bold text-xs">01</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 uppercase tracking-tighter">Magnetism</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Permanent magnets, flux lines, and molecular theory. Understanding magnetic poles and field interaction.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2rem] topic-glow">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6">
+                        <span class="text-indigo-500 font-mono font-bold text-xs">02</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 uppercase tracking-tighter">Electromagnetism</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Fields around current-carrying conductors and coils. Utilizing the Right Hand Grip Rule for polarity.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2rem] topic-glow">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6">
+                        <span class="text-indigo-500 font-mono font-bold text-xs">03</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 uppercase tracking-tighter">Magnetic Circuits</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Reluctance, permeability, and B-H loops. Analyzing the 'Ohm's Law' equivalent for magnetic paths.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2rem] topic-glow">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6">
+                        <span class="text-indigo-500 font-mono font-bold text-xs">04</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 uppercase tracking-tighter">Electromagnetic Induction</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Faraday’s and Lenz’s laws. Determining induced EMF magnitude and current direction in conductors.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2rem] topic-glow">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6">
+                        <span class="text-indigo-500 font-mono font-bold text-xs">05</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 uppercase tracking-tighter">Inductance</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Self and Mutual inductance principles. Energy storage and the effects of back-EMF in inductive loads.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2rem] topic-glow">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6">
+                        <span class="text-indigo-500 font-mono font-bold text-xs">06</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 uppercase tracking-tighter">Measurement Instruments</h3>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Operating principles of analog and digital magnetic instruments, including Hall Effect sensors.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2rem] md:col-span-2 lg:col-span-3 border-t-2 border-indigo-500/50">
+                    <div class="flex flex-col md:flex-row gap-8 items-start">
+                        <div class="shrink-0">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                                <span class="text-indigo-500 font-mono font-bold text-xs">07</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 uppercase tracking-tighter">Magnetic Devices</h3>
+                            <p class="text-sm text-zinc-500 leading-relaxed mb-4">Practical application and fault-finding in industrial devices: Relays, Contactors, Solenoids, and Basic Transformers. Understanding coil ratings and contact configurations.</p>
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-white/5 rounded-md text-[10px] font-bold text-zinc-400 border border-white/5">Relays</span>
+                                <span class="px-3 py-1 bg-white/5 rounded-md text-[10px] font-bold text-zinc-400 border border-white/5">Contactors</span>
+                                <span class="px-3 py-1 bg-white/5 rounded-md text-[10px] font-bold text-zinc-400 border border-white/5">Solenoids</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="max-w-7xl mx-auto px-6 py-12 border-t border-white/5 flex justify-between items-center">
+        <p class="text-[9px] font-black text-zinc-600 uppercase tracking-[0.4em]">© 2026 APPRENTICES GUIDE // SAFE SA COMPLIANT</p>
+        <span class="text-[9px] font-black text-indigo-500 uppercase tracking-widest italic">Unit UEEEL0021-V5.0</span>
+    </footer>
+
+</body>
+</html>

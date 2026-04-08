@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 3: Magnetic Circuits | UEEEL0021</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        :root { --indigo: #6366f1; --bg: #050505; }
+        body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: #e4e4e7; scroll-behavior: smooth; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-card { background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); transition: 0.4s; }
+        .glass-card:hover { border-color: var(--indigo); transform: translateY(-5px); }
+        .img-container { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 2rem; overflow: hidden; }
+        .highlight { color: var(--indigo); font-weight: 700; }
+        .text-glow { text-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky top-0 z-50 glass-card border-b border-white/5 px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
+            <a href="learning-hub.html" class="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-white">← Hub</a>
+        </div>
+        <div class="hidden lg:flex gap-8 text-[9px] font-black uppercase tracking-widest text-zinc-600">
+            <a href="#ohm-law" class="hover:text-indigo-400">3.1 Magnetic Ohm's Law</a>
+            <a href="#examples" class="hover:text-indigo-400">3.2 Calculations</a>
+            <a href="#reluctance" class="hover:text-indigo-400">3.3 Reluctance</a>
+            <a href="#hysteresis" class="hover:text-indigo-400">3.4 B-H Curve</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-8 py-16">
+        
+        <header class="mb-32">
+            <span class="text-indigo-500 text-[11px] font-black tracking-[0.4em] uppercase mb-4 block">Section 3.0</span>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-white mb-8 italic">Magnetic <span class="text-zinc-800">Circuits.</span></h1>
+            <p class="text-zinc-500 max-w-2xl text-lg">Just as electrons flow through a conductor, magnetic flux flows through a medium. We use circuit theory to calculate exactly how much flux is produced in a core.</p>
+        </header>
+
+        <section id="ohm-law" class="mb-32">
+            <div class="flex items-center gap-3 mb-12">
+                <span class="text-zinc-800 font-mono italic text-4xl">3.1</span>
+                <h2 class="text-3xl font-black text-white uppercase tracking-tight">The Magnetic Equation</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="glass-card p-10 rounded-[3rem] border-l-4 border-indigo-500">
+                    <h3 class="text-white font-bold mb-6 uppercase tracking-widest text-xs">Ohm's Law Analogy</h3>
+                    <div class="bg-black/40 p-8 rounded-3xl border border-white/5 mb-6">
+                        <div class="text-4xl font-black text-white italic tracking-tighter text-center">
+                            $$\Phi = \frac{F_m}{R_m}$$
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <span class="block text-indigo-400 font-bold text-xl">$$\Phi$$</span>
+                            <span class="text-[9px] text-zinc-500 uppercase">Flux (Webers)</span>
+                        </div>
+                        <div>
+                            <span class="block text-indigo-400 font-bold text-xl">$$F_m$$</span>
+                            <span class="text-[9px] text-zinc-500 uppercase">MMF (At)</span>
+                        </div>
+                        <div>
+                            <span class="block text-indigo-400 font-bold text-xl">$$R_m$$</span>
+                            <span class="text-[9px] text-zinc-500 uppercase">Reluctance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="text-indigo-500 font-black text-[10px] uppercase tracking-widest">3.2.2 Magnetic Flux</h4>
+                    <p class="text-zinc-400 leading-relaxed">
+                        Magnetic flux is the <span class="highlight italic">invisible lines of magnetic force</span> that pass through all materials. 
+                        It can be calculated if the magnetomotive force ($F_m$) and the reluctance ($R_m$) of the magnetic circuit are known.
+                        <br><br>
+                        The unit of magnetic flux is the <strong>weber (Wb)</strong>. The symbol is <strong>Φ</strong> (phi).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples" class="mb-32" x-data="{ activeExample: 1, showSolution: false }">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <span class="text-zinc-800 font-mono italic text-4xl">3.2.3</span>
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tight">Practice Calculations</h2>
+                </div>
+                <div class="flex bg-white/5 p-1 rounded-2xl border border-white/10">
+                    <button @click="activeExample = 1; showSolution = false" :class="activeExample === 1 ? 'bg-indigo-500 text-white' : 'text-zinc-500'" class="px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">Flux (Φ)</button>
+                    <button @click="activeExample = 2; showSolution = false" :class="activeExample === 2 ? 'bg-indigo-500 text-white' : 'text-zinc-500'" class="px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all">MMF (Fm)</button>
+                </div>
+            </div>
+
+            <div class="glass-card p-12 rounded-[4rem] border-t-2 border-indigo-500/30">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="w-full">
+                        <div x-show="activeExample === 1" x-transition>
+                            <h4 class="text-white font-bold mb-6 italic text-2xl">Calculating <span class="text-indigo-500">Flux</span></h4>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-8">
+                                Calculate the flux established in a magnetic circuit when the magnetomotive force is <span class="text-white font-bold">900 At</span> and the reluctance is <span class="text-white font-bold">18,500 At/Wb</span>.
+                            </p>
+                        </div>
+
+                        <div x-show="activeExample === 2" x-transition>
+                            <h4 class="text-white font-bold mb-6 italic text-2xl">Calculating <span class="text-indigo-500">MMF</span></h4>
+                            <p class="text-zinc-400 text-sm leading-relaxed mb-8">
+                                What magnetomotive force is needed to establish a magnetic flux of <span class="text-white font-bold">54 mWb</span> if the reluctance of the magnetic circuit is <span class="text-white font-bold">12,600 At/Wb</span>?
+                            </p>
+                        </div>
+
+                        <div class="min-h-[180px]">
+                            <button x-show="!showSolution" @click="showSolution = true" class="px-10 py-4 bg-white text-black rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-500 hover:text-white transition-all shadow-xl">Start Solution</button>
+                            
+                            <div x-show="showSolution" x-transition class="space-y-6">
+                                <div class="mono text-sm bg-black/50 p-8 rounded-[2rem] border border-white/5 space-y-4">
+                                    <template x-if="activeExample === 1">
+                                        <div class="space-y-3">
+                                            <p class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">Formula: <span class="text-indigo-400 ml-2">Φ = Fm / Rm</span></p>
+                                            <p class="text-zinc-300">$$\Phi = 900 / 18,500$$</p>
+                                            <p class="text-xl text-white font-black italic">Φ = 48.65 mWb</p>
+                                        </div>
+                                    </template>
+                                    <template x-if="activeExample === 2">
+                                        <div class="space-y-3">
+                                            <p class="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">Formula: <span class="text-indigo-400 ml-2">Fm = Rm × Φ</span></p>
+                                            <p class="text-zinc-300">$$F_m = 12,600 \times (54 \times 10^{-3})$$</p>
+                                            <p class="text-xl text-white font-black italic">Fm = 680.4 At</p>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="img-container p-4 hidden lg:block">
+                        <div class="relative group">
+                            <div class="absolute inset-0 bg-indigo-500/10 group-hover:bg-transparent transition-colors"></div>
+                            <img src="circuit-calc-visual.jpg" class="w-full opacity-40 rounded-2xl grayscale">
+                            <div class="absolute bottom-6 left-6">
+                                <span class="text-[9px] font-black uppercase text-indigo-500 bg-black/80 px-4 py-2 rounded-full border border-indigo-500/30">Technical Ref: PEER_2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reluctance" class="mb-32">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-7">
+                    <div class="flex items-center gap-3 mb-12">
+                        <span class="text-zinc-800 font-mono italic text-4xl">3.3</span>
+                        <h2 class="text-3xl font-black text-white uppercase tracking-tight">Reluctance ($R_m$)</h2>
+                    </div>
+                    <div class="glass-card p-10 rounded-[3rem] mb-8">
+                        <p class="text-zinc-400 mb-6 leading-relaxed">Reluctance is the opposition a material offers to the setup of magnetic flux. It is directly proportional to the length of the path and inversely proportional to the cross-sectional area and permeability.</p>
+                        <div class="text-2xl font-black text-white mb-6">$$R_m = \frac{l}{\mu_0 \mu_r A}$$</div>
+                        <ul class="text-xs space-y-3 text-zinc-500">
+                            <li><span class="text-white font-bold italic">l</span> = Length of magnetic path (m)</li>
+                            <li><span class="text-white font-bold italic">A</span> = Cross-sectional area (m²)</li>
+                            <li><span class="text-white font-bold italic">$$\mu$$</span> = Permeability of the material</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 img-container p-10 flex flex-col justify-center border-indigo-500/10">
+                    <div class="text-center">
+                        <i class="fas fa-microchip text-6xl text-indigo-500/20 mb-6"></i>
+                        <h4 class="text-white font-bold italic mb-2 uppercase text-xs">Core Efficiency</h4>
+                        <p class="text-[11px] text-zinc-500 leading-relaxed">Selecting core materials with high relative permeability ($\mu_r$) minimizes $R_m$, allowing for maximum flux with minimal energy input.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hysteresis" class="mb-32">
+            <div class="flex items-center gap-3 mb-12">
+                <span class="text-zinc-800 font-mono italic text-4xl">3.4</span>
+                <h2 class="text-3xl font-black text-white uppercase tracking-tight">B-H Curve & Hysteresis</h2>
+            </div>
+            
+            <div class="glass-card p-12 rounded-[4rem]">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white italic mb-6 uppercase tracking-tighter">Magnetic Saturation</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-8">
+                            As we increase MMF ($H$), the Flux Density ($B$) increases—but only to a point. Once all magnetic domains are aligned, the material is <span class="highlight">saturated</span>. Further increases in current will not result in more flux.
+                        </p>
+                        <div class="p-8 bg-indigo-500/5 rounded-[2rem] border border-indigo-500/10">
+                            <span class="text-indigo-400 font-black block mb-2 uppercase text-[10px] tracking-[0.2em]">Hysteresis Loss</span>
+                            <p class="text-[11px] text-zinc-400 leading-relaxed italic">"Energy lost as heat due to the friction of molecular magnets realigning."</p>
+                        </div>
+                    </div>
+                    <div class="img-container p-4">
+                        <img src="bh-curve-diagram.jpg" class="w-full rounded-3xl opacity-70 border border-white/5 shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pb-32">
+            <div class="glass-card p-12 rounded-[3rem] bg-indigo-500/5 border-indigo-500/20 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div>
+                    <h4 class="text-white font-bold italic text-2xl mb-2 uppercase">Ready for Induction?</h4>
+                    <p class="text-sm text-zinc-500">Topic 3 focused on the math of static circuits. Topic 4 introduces dynamic induced EMF.</p>
+                </div>
+                <a href="topic4-induction.html" class="px-10 py-4 bg-indigo-500 text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-indigo-400 transition shadow-[0_15px_30px_rgba(99,102,241,0.3)]">
+                    Next Topic: Induction →
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="p-20 border-t border-white/5 bg-[#080808]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-2xl font-black text-white italic tracking-tighter">XCLIPSE <span class="text-indigo-500">STUDIO</span></div>
+            <div class="flex gap-12 text-right text-xs text-zinc-500 uppercase font-black">
+                <div>Revision: 2026.04.08</div>
+                <div>Module: UEEEL0021</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

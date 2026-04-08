@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Logic | Electrical Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        :root { --indigo: #6366f1; --bg: #050505; }
+        body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: #e4e4e7; scroll-behavior: smooth; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-card { background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); transition: 0.4s; }
+        .glass-card:hover { border-color: var(--indigo); transform: translateY(-5px); }
+        .logic-gate { border: 2px solid #1a1a1a; background: #0a0a0a; transition: 0.3s; }
+        .logic-on { border-color: var(--indigo); box-shadow: 0 0 20px rgba(99, 102, 241, 0.2); }
+        .highlight { color: var(--indigo); font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky top-0 z-50 glass-card border-b border-white/5 px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
+            <a href="learning-hub.html" class="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-white">← Hub</a>
+        </div>
+        <div class="hidden lg:flex gap-8 text-[9px] font-black uppercase tracking-widest text-zinc-600">
+            <a href="#intro" class="hover:text-indigo-400">Digital Language</a>
+            <a href="#states" class="hover:text-indigo-400">Electrical States</a>
+            <a href="#plc" class="hover:text-indigo-400">PLC Logic</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-8 py-16">
+        
+        <header id="intro" class="mb-32">
+            <span class="text-indigo-500 text-[11px] font-black tracking-[0.4em] uppercase mb-4 block">Digital Fundamentals</span>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-white mb-8 italic">Binary <span class="text-zinc-800">Code.</span></h1>
+            <p class="text-zinc-500 max-w-2xl text-lg leading-relaxed">
+                In the world of electronics and PLCs, binary code is the fundamental language machines use to communicate. Everything from logic gates to microprocessors relies on this base-2 system.
+            </p>
+        </header>
+
+        <section id="states" class="mb-32" x-data="{ binaryState: 0 }">
+            <div class="flex items-center gap-3 mb-12">
+                <span class="text-zinc-800 font-mono italic text-4xl">01</span>
+                <h2 class="text-3xl font-black text-white uppercase tracking-tight">Electrical States</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <p class="text-zinc-400 leading-relaxed">
+                        Binary is a <span class="highlight italic">base-2 number system</span> using only two digits: <span class="text-white">0 and 1</span>. In industrial control circuits, these digits map directly to voltage levels.
+                    </p>
+                    
+                    <div class="glass-card p-10 rounded-[3rem] border-l-4 border-indigo-500">
+                        <div class="flex flex-col gap-6">
+                            <div class="flex items-center justify-between p-6 bg-white/5 rounded-2xl border border-white/5">
+                                <span class="text-4xl font-black text-white italic">0</span>
+                                <div class="text-right">
+                                    <span class="block text-indigo-400 font-bold uppercase text-[10px] tracking-widest">State: OFF</span>
+                                    <span class="text-zinc-500 text-xs">No Voltage (0V DC)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-6 bg-white/5 rounded-2xl border border-white/5">
+                                <span class="text-4xl font-black text-white italic">1</span>
+                                <div class="text-right">
+                                    <span class="block text-emerald-400 font-bold uppercase text-[10px] tracking-widest">State: ON</span>
+                                    <span class="text-zinc-500 text-xs">Presence of Voltage (24V DC)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-12 rounded-[4rem] flex flex-col items-center justify-center text-center">
+                    <h4 class="text-[10px] font-black uppercase text-zinc-500 tracking-[0.3em] mb-12 text-center w-full">Logic State Simulator</h4>
+                    
+                    <div class="relative mb-12">
+                        <div :class="binaryState === 1 ? 'bg-indigo-500/20' : 'bg-transparent'" class="absolute inset-0 blur-[60px] transition-all duration-700 rounded-full"></div>
+                        <div @click="binaryState = binaryState === 0 ? 1 : 0" 
+                             :class="binaryState === 1 ? 'border-indigo-500 text-white' : 'border-zinc-800 text-zinc-800'"
+                             class="w-40 h-40 rounded-full border-4 flex items-center justify-center text-7xl font-black cursor-pointer transition-all duration-500 select-none">
+                             <span x-text="binaryState"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <p class="mono text-sm uppercase tracking-widest" :class="binaryState === 1 ? 'text-indigo-400' : 'text-zinc-600'">
+                            Output Voltage: <span x-text="binaryState === 1 ? '24V DC' : '0V DC'"></span>
+                        </p>
+                        <p class="text-[10px] text-zinc-500 uppercase">Click the digit to toggle logic state</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plc" class="mb-32">
+            <div class="flex items-center gap-3 mb-12">
+                <span class="text-zinc-800 font-mono italic text-4xl">02</span>
+                <h2 class="text-3xl font-black text-white uppercase tracking-tight">PLC & Industrial Automation</h2>
+            </div>
+
+            <div class="glass-card p-12 rounded-[4rem] bg-indigo-500/[0.02]">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="img-container p-8 bg-black/60">
+                        <div class="border-l-4 border-r-4 border-zinc-800 p-8 flex flex-col gap-8">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-8 h-12 border-x-2 border-zinc-700"></div>
+                                    <span class="text-[10px] font-mono text-zinc-600">I:0/1</span>
+                                </div>
+                                <div class="h-[2px] bg-zinc-800 flex-grow mx-4"></div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-10 h-10 rounded-full border-2 border-indigo-500/50 flex items-center justify-center text-indigo-500 font-bold text-xs">M</div>
+                                    <span class="text-[10px] font-mono text-zinc-600">O:0/1</span>
+                                </div>
+                            </div>
+                            <p class="text-center text-[9px] text-zinc-600 uppercase tracking-widest">PLC Ladder Logic Representation</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-white italic mb-6">Logical Addressing</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed mb-8">
+                            In PLC programming, binary states are used in <span class="highlight">Ladder Logic</span> to control field devices. Turning on a motor is a process of writing a logical <span class="text-white">1</span> to a specific output address.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-6 bg-white/5 rounded-2xl">
+                                <i class="fas fa-microchip text-indigo-500 mt-1"></i>
+                                <div>
+                                    <span class="block text-white font-bold text-xs mb-1 uppercase tracking-wider">Bit-Level Control</span>
+                                    <p class="text-[11px] text-zinc-500 leading-relaxed">Each physical terminal on a PLC corresponds to a single bit (0 or 1) in the processor memory.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pb-32">
+            <div class="glass-card p-12 rounded-[3rem] border border-white/10 text-center">
+                <h4 class="text-white font-bold italic text-2xl mb-4 uppercase">Core Takeaway</h4>
+                <p class="text-zinc-500 max-w-xl mx-auto text-sm leading-relaxed mb-8">
+                    Understanding how binary translates to real-world signals is essential for automation, control circuits, and digital electronics.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <div class="px-6 py-2 bg-zinc-900 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/5">Digital = Logic</div>
+                    <div class="px-6 py-2 bg-zinc-900 rounded-full text-[9px] font-black uppercase tracking-widest border border-white/5">Analog = Voltage</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="p-20 border-t border-white/5 bg-[#080808]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-2xl font-black text-white italic tracking-tighter">Apprentices <span class="text-indigo-500">Guide.org</span></div>
+            <div class="flex gap-12 text-right text-xs text-zinc-500 uppercase font-black">
+                <div>Revision: 2026.04.08</div>
+                <div>Topic: Binary Logic</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

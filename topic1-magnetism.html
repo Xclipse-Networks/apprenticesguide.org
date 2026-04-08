@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topic 1: Magnetism | UEEEL0021 Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #050505; color: #e4e4e7; scroll-behavior: smooth; }
+        .glass-card { background: rgba(18, 18, 18, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); }
+        .property-list li { border-left: 2px solid #6366f1; padding-left: 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.02); padding-top: 0.5rem; padding-bottom: 0.5rem; border-radius: 0 0.75rem 0.75rem 0; }
+        .img-container { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 1.5rem; overflow: hidden; }
+        .accent-text { color: #6366f1; font-weight: 700; }
+        .warning-box { background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); }
+        
+        .materials-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+        .materials-table th { text-align: left; padding: 12px 20px; font-size: 10px; font-weight: 900; color: #6366f1; text-transform: uppercase; letter-spacing: 0.2em; }
+        .materials-table td { background: rgba(255,255,255,0.03); padding: 20px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .materials-table tr td:first-child { border-left: 1px solid rgba(255,255,255,0.05); border-radius: 1rem 0 0 1rem; font-weight: 700; color: #fff; }
+        .materials-table tr td:last-child { border-right: 1px solid rgba(255,255,255,0.05); border-radius: 0 1rem 1rem 0; }
+
+        /* Flashcard Flip Animation */
+        .flashcard { perspective: 1000px; height: 220px; }
+        .flashcard-inner { transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer; position: relative; width: 100%; height: 100%; }
+        .flashcard:hover .flashcard-inner { transform: rotateY(180deg); }
+        .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 1.5rem; }
+        .card-back { transform: rotateY(180deg); background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); padding: 1rem; }
+    </style>
+</head>
+<body class="selection:bg-indigo-500/30">
+
+    <nav class="sticky top-0 z-50 px-6 py-4 flex justify-between items-center glass-card border-b border-white/5">
+        <div class="flex items-center gap-2">
+            <div class="w-2 h-2 bg-indigo-500 rounded-full"></div>
+            <a href="ueeel0021.html" class="text-sm font-black tracking-tighter uppercase text-zinc-400 hover:text-white transition">← Back to Module</a>
+        </div>
+        <div class="text-[10px] font-bold tracking-widest text-indigo-500 uppercase">Topic 1: Magnetism</div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 py-12">
+        
+        <header class="mb-16">
+            <span class="text-indigo-500 text-[10px] font-black tracking-[0.3em] uppercase mb-4 block">Section 1.1</span>
+            <h1 class="text-5xl md:text-7xl font-black tracking-tighter text-white mb-6 leading-tight">Introduction.</h1>
+            <div class="glass-card p-8 rounded-[2.5rem] border-l-4 border-indigo-500">
+                <p class="text-zinc-400 leading-relaxed text-lg">
+                    Magnetism and in particular <span class="accent-text">‘electromagnetism’</span> plays a big part in the operation of many electrical machines and components. Relays, contactors, ballasts, transformers, alternators, generators and electric motors all depend on magnetism for their operation.
+                </p>
+            </div>
+        </header>
+
+        <section class="mb-20">
+            <h2 class="text-2xl font-bold text-white mb-6 italic">1.2 Permanent Magnetic Principles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="text-white font-bold mb-2">1.2.1 Permanent Magnet</h4>
+                    <p class="text-xs text-zinc-500 leading-relaxed">A magnet is any object which has the property of attracting magnetic substances to itself. This property is called ‘magnetism’.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="text-white font-bold mb-2">Temporary Magnet</h4>
+                    <p class="text-xs text-zinc-500 leading-relaxed">Loses practically all of its magnetism when the magnetising influence is removed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-zinc-800 font-mono italic text-4xl">1.2.2</span>
+                <h2 class="text-2xl font-bold text-white">Magnetic Flux</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+                <div class="lg:col-span-5">
+                    <p class="text-sm text-zinc-400 leading-relaxed mb-6">
+                        The magnetic force is carried by invisible magnetic field lines called magnetic <span class="accent-text">‘flux’</span>. All practical magnets have a ‘north pole’ and a ‘south pole’. 
+                    </p>
+                    <div class="glass-card p-6 rounded-2xl border-l-2 border-indigo-500/50 text-[11px] text-zinc-400 space-y-2">
+                        <li>• Completely closed curves.</li>
+                        <li>• Definite direction – North to South.</li>
+                        <li>• Perfectly elastic.</li>
+                        <li>• Never cross each other.</li>
+                    </div>
+                </div>
+                <div class="lg:col-span-7">
+                    <div class="img-container p-4 bg-zinc-900/30 text-center">
+                        <img src="image_b1cf63.png" alt="Magnetic Flux Diagram" class="w-full rounded-xl shadow-2xl mb-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-zinc-800 font-mono italic text-4xl">1.2.3</span>
+                <h2 class="text-2xl font-bold text-white">Field Patterns</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-card overflow-hidden rounded-[2.5rem]">
+                    <div class="img-container aspect-video flex items-center justify-center p-4">
+                        <img src="image_b2268d.png" class="max-h-full rounded-lg">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-white mb-2 italic">Bar Magnet</h3>
+                        <p class="text-xs text-zinc-500 leading-relaxed">Concentrated field lines at each end of the bar.</p>
+                    </div>
+                </div>
+                <div class="glass-card overflow-hidden rounded-[2.5rem]">
+                    <div class="img-container aspect-video flex items-center justify-center p-4">
+                        <img src="image_b226ae.png" class="max-h-full rounded-lg">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-white mb-2 italic">Horseshoe Magnet</h3>
+                        <p class="text-xs text-zinc-500 leading-relaxed">Concentrated in the space between poles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-zinc-800 font-mono italic text-4xl">1.2.4</span>
+                <h2 class="text-2xl font-bold text-white">Laws of Magnetism</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <div class="glass-card p-6 rounded-2xl border-l-2 border-indigo-500">
+                        <ol class="text-sm text-zinc-300 space-y-2">
+                            <li><span class="text-white font-bold">1.</span> Like poles repel (Repulsion).</li>
+                            <li><span class="text-white font-bold">2.</span> Unlike poles attract (Attraction).</li>
+                        </ol>
+                    </div>
+                    <div class="warning-box p-6 rounded-3xl text-xs text-zinc-400">
+                        <h4 class="text-red-400 font-black mb-2 uppercase">Physical Movement Warning</h4>
+                        Fault currents can cause magnetic forces that physically move conductors, damaging switchboards.
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="img-container p-4 bg-zinc-900/30 text-center">
+                        <img src="image_b22d3a.png" class="w-full rounded-xl mb-2">
+                        <span class="text-[9px] text-zinc-600 font-bold uppercase tracking-widest">Repulsion</span>
+                    </div>
+                    <div class="img-container p-4 bg-zinc-900/30 text-center">
+                        <img src="image_b231b1.png" class="w-full rounded-xl mb-2">
+                        <span class="text-[9px] text-zinc-600 font-bold uppercase tracking-widest">Attraction</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-zinc-800 font-mono italic text-4xl">1.3</span>
+                <h2 class="text-2xl font-bold text-white uppercase tracking-tight">Magnetic Materials</h2>
+            </div>
+            <div class="glass-card p-8 rounded-[2.5rem] mb-12">
+                <p class="text-zinc-400 leading-relaxed mb-6">
+                    Many substances exhibit some degree of magnetism and are affected by a magnetic field. Some materials, called <span class="accent-text">‘ferromagnetic materials’</span> have a strong attraction to magnetic lines of force.
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="materials-table">
+                        <thead>
+                            <tr>
+                                <th>Magnetic Material</th>
+                                <th>Property</th>
+                                <th>Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr>
+                                <td>Ferromagnetic</td>
+                                <td class="text-zinc-400">Strongly attracted to a magnetic field.</td>
+                                <td class="text-zinc-500">Iron, Cobalt, Nickel</td>
+                            </tr>
+                            <tr>
+                                <td>Paramagnetic</td>
+                                <td class="text-zinc-400">Weakly attracted to a magnetic field.</td>
+                                <td class="text-zinc-500">Molybdenum, Magnesium, Lithium, Aluminium, Tantalum, Oxygen</td>
+                            </tr>
+                            <tr>
+                                <td>Diamagnetic</td>
+                                <td class="text-zinc-400">Weakly repelled by a magnetic field.</td>
+                                <td class="text-zinc-500">Copper, Carbon (including wood and plastic), Mercury, Hydrogen (including water), Silver, Gold</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-zinc-800 font-mono italic text-4xl">1.3.2</span>
+                <h2 class="text-2xl font-bold text-white uppercase tracking-tight">Manufactured Magnets</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <p class="text-sm text-zinc-400 leading-relaxed">
+                        Permanent magnets are generally made from alloys of ferromagnetic and paramagnetic/diamagnetic materials. These are classified as <span class="accent-text">‘hard’</span> or <span class="accent-text">‘soft’</span> based on their magnetic retention.
+                    </p>
+                    <div class="glass-card p-6 rounded-2xl border-l-2 border-indigo-500">
+                        <h4 class="text-white font-bold text-sm mb-1 italic">‘Alnico’ Alloy</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed mb-4">A widely used trade name for permanent magnets. It consists of:</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-zinc-400">Aluminium</span>
+                            <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-zinc-400">Nickel</span>
+                            <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-zinc-400">Iron</span>
+                            <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-zinc-400">Cobalt</span>
+                            <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-[9px] text-zinc-400">Copper</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="img-container p-6 bg-zinc-900/30 flex flex-col items-center justify-center">
+                    <img src="image_b23d39.jpg" alt="Common Manufactured Magnet Shapes" class="w-full rounded-xl mb-4">
+                    <span class="text-[9px] text-zinc-600 font-bold uppercase tracking-widest">Common Magnet Shapes</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-zinc-800 font-mono italic text-4xl">1.3.3</span>
+                <h2 class="text-2xl font-bold text-white uppercase tracking-tight">Rare-earth Magnets</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <p class="text-sm text-zinc-400 leading-relaxed">
+                        Rare-earth magnets are very strong, compact magnets made from the alloys of rare-earth elements. 
+                    </p>
+                    <div class="glass-card p-6 rounded-2xl border-l-2 border-indigo-500">
+                        <h4 class="text-white font-bold text-sm mb-1 italic">Neodymium Magnet</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed mb-4">Manufactured from an alloy of <span class="text-white">neodymium, iron and boron (NdFeB)</span>.</p>
+                        <h4 class="text-indigo-400 text-[10px] font-black uppercase tracking-widest mb-2">Typical Application</h4>
+                        <p class="text-[11px] text-zinc-500">Used where strong, compact permanent magnets are required, such as the <span class="text-zinc-300">motor field poles in cordless electric tools</span>.</p>
+                    </div>
+                </div>
+                <div class="img-container p-6 bg-zinc-900/30 flex flex-col items-center justify-center">
+                    <img src="image_bc31e2.jpg" alt="Neodymium Magnets" class="w-full rounded-xl mb-4">
+                    <span class="text-[9px] text-zinc-600 font-bold uppercase tracking-widest">Neodymium (Rare-Earth) Magnets</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-zinc-800 font-mono italic text-4xl">1.4</span>
+                <h2 class="text-2xl font-bold text-white uppercase tracking-tight">Applications</h2>
+            </div>
+            <p class="text-sm text-zinc-400 mb-10 leading-relaxed max-w-2xl">
+                Permanent magnets are essential in modern electrical engineering. Hover or click the cards below to see where a strong permanent magnetic field is required.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="card-front glass-card border border-white/5">
+                            <i class="fas fa-volume-up text-indigo-500 mb-3 text-xl"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest">Speakers</span>
+                        </div>
+                        <div class="card-back overflow-hidden">
+                            <img src="speakers.jpg" class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition duration-500">
+                            <div class="absolute bottom-0 inset-x-0 p-4 bg-black/60 backdrop-blur-sm">
+                                <span class="text-[9px] text-zinc-200 font-bold uppercase block text-center">Audio Diaphragms</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="card-front glass-card border border-white/5">
+                            <i class="fas fa-hdd text-indigo-500 mb-3 text-xl"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest">Hard Drive</span>
+                        </div>
+                        <div class="card-back overflow-hidden">
+                            <img src="hard drive.jpg" class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition duration-500">
+                            <div class="absolute bottom-0 inset-x-0 p-4 bg-black/60 backdrop-blur-sm">
+                                <span class="text-[9px] text-zinc-200 font-bold uppercase block text-center">Head Actuators</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="card-front glass-card border border-white/5">
+                            <i class="fas fa-compass text-indigo-500 mb-3 text-xl"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest">Compass</span>
+                        </div>
+                        <div class="card-back overflow-hidden">
+                            <img src="compass.jpg" class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition duration-500">
+                            <div class="absolute bottom-0 inset-x-0 p-4 bg-black/60 backdrop-blur-sm">
+                                <span class="text-[9px] text-zinc-200 font-bold uppercase block text-center">Needle Alignment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="card-front glass-card border border-white/5">
+                            <i class="fas fa-microphone text-indigo-500 mb-3 text-xl"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest">Microphone</span>
+                        </div>
+                        <div class="card-back overflow-hidden">
+                            <img src="microphone.jpg" class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition duration-500">
+                            <div class="absolute bottom-0 inset-x-0 p-4 bg-black/60 backdrop-blur-sm">
+                                <span class="text-[9px] text-zinc-200 font-bold uppercase block text-center">Electrodynamic Pickup</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="card-front glass-card border border-white/5">
+                            <i class="fas fa-toggle-on text-indigo-500 mb-3 text-xl"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-center">Reed Switch</span>
+                        </div>
+                        <div class="card-back overflow-hidden">
+                            <img src="reed switch.jpg" class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition duration-500">
+                            <div class="absolute bottom-0 inset-x-0 p-4 bg-black/60 backdrop-blur-sm">
+                                <span class="text-[9px] text-zinc-200 font-bold uppercase block text-center">Proximity Sensors</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="card-front glass-card border border-white/5">
+                            <i class="fas fa-tachometer-alt text-indigo-500 mb-3 text-xl"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-center">Measuring</span>
+                        </div>
+                        <div class="card-back overflow-hidden">
+                            <img src="Analogue voltmeter.jpg" class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition duration-500">
+                            <div class="absolute bottom-0 inset-x-0 p-4 bg-black/60 backdrop-blur-sm">
+                                <span class="text-[9px] text-zinc-200 font-bold uppercase block text-center">Moving Coil Force</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="card-front glass-card border border-white/5">
+                            <i class="fas fa-tools text-indigo-500 mb-3 text-xl"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-center">Electric Drill</span>
+                        </div>
+                        <div class="card-back overflow-hidden">
+                            <img src="cordless electric drill.jpg" class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition duration-500">
+                            <div class="absolute bottom-0 inset-x-0 p-4 bg-black/60 backdrop-blur-sm">
+                                <span class="text-[9px] text-zinc-200 font-bold uppercase block text-center">Motor Field Poles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="card-front glass-card border border-white/5">
+                            <i class="fas fa-thumbtack text-indigo-500 mb-3 text-xl"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-center">Fridge Magnet</span>
+                        </div>
+                        <div class="card-back overflow-hidden">
+                            <img src="fridge magnet .jpg" class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition duration-500">
+                            <div class="absolute bottom-0 inset-x-0 p-4 bg-black/60 backdrop-blur-sm">
+                                <span class="text-[9px] text-zinc-200 font-bold uppercase block text-center">Surface Adhesion</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-zinc-800 font-mono italic text-4xl">1.4.1</span>
+                <h2 class="text-2xl font-bold text-white uppercase tracking-tight">Magnetic Screening</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="glass-card p-8 rounded-[2rem]">
+                        <p class="text-sm text-zinc-400 leading-relaxed mb-6">
+                            Magnetic screening (shielding) is used to <span class="accent-text">redirect stray magnetic fields</span> away from sensitive components. Because magnetic flux passes through ferromagnetic materials (like iron) more easily than through air or nonmagnetic materials, we can create a "low-resistance" path for the field to follow.
+                        </p>
+                        <div class="warning-box p-6 rounded-2xl border-l-2 border-indigo-500">
+                            <h4 class="text-indigo-400 text-[10px] font-black uppercase tracking-widest mb-2">Technical Core</h4>
+                            <p class="text-xs text-zinc-500">Surrounding a device with a ferromagnetic screen ensures the field is redirected through the screen material rather than through the sensitive device at the center.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="img-container p-4 bg-zinc-900/30 text-center">
+                        <img src="magnetic screening (enhance).jpg" alt="Magnetic Screening Diagram" class="w-full rounded-xl shadow-2xl mb-2">
+                        <span class="text-[9px] text-zinc-600 font-bold uppercase tracking-widest">Flux redirection (PEER)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-24">
+            <div class="flex items-center gap-3 mb-8">
+                <span class="text-zinc-800 font-mono italic text-4xl">1.4.2</span>
+                <h2 class="text-2xl font-bold text-white uppercase tracking-tight">Reed Switch</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div class="space-y-6">
+                    <p class="text-sm text-zinc-400 leading-relaxed">
+                        A <span class="accent-text">‘reed switch’</span> is an electrical switch operated by a magnetic field. Its contacts are made from <span class="text-white">ferromagnetic material</span> that react when a magnet is brought into proximity.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass-card p-5 rounded-2xl border-b-2 border-green-500/50">
+                            <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-2">‘NO’ (Normally Open)</h4>
+                            <p class="text-[10px] text-zinc-500">Contacts <span class="text-green-400">CLOSE</span> in the presence of a magnet.</p>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl border-b-2 border-red-500/50">
+                            <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-2">‘NC’ (Normally Closed)</h4>
+                            <p class="text-[10px] text-zinc-500">Contacts <span class="text-red-400">OPEN</span> in the presence of a magnet.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-l-2 border-indigo-500">
+                        <h4 class="text-white font-bold text-sm mb-2 italic">Security Application</h4>
+                        <p class="text-xs text-zinc-400 leading-relaxed">
+                            Commonly used as a <span class="text-white">door alarm trigger</span>. The switch is fixed to the door jam while a magnet is attached to the door. Opening the door moves the magnet away, operating the contacts to trigger the alarm circuit.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="img-container p-6 bg-zinc-900/30">
+                    <img src="Reed switch 2-1920x1080.jpg" alt="Reed Switch Components" class="w-full rounded-xl mb-4 shadow-2xl">
+                    <div class="flex justify-between items-center px-2">
+                        <span class="text-[9px] text-zinc-600 font-bold uppercase tracking-widest">Ferromagnetic Contacts</span>
+                        <div class="flex gap-2">
+                            <span class="w-2 h-2 rounded-full bg-indigo-500/50"></span>
+                            <span class="w-2 h-2 rounded-full bg-indigo-500/20"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="max-w-5xl mx-auto px-6 py-12 border-t border-white/5 text-center">
+        <p class="text-[9px] font-black text-zinc-700 uppercase tracking-[0.4em]">© 2026 APPRENTICES GUIDE // SAFE SA COMPLIANT</p>
+    </footer>
+
+</body>
+</html>
