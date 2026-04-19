@@ -3,126 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XCLIPSE | UEEEL0019 Gateway</title>
+    <title>XCLIPSE | UEEEL0019 SECURITY</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
             --bg: #030303;
+            --red: #ef4444;
             --indigo: #6366f1;
-            --success: #10b981;
         }
 
         body { 
             font-family: 'Space Grotesk', sans-serif; 
             background-color: var(--bg); 
             color: #e4e4e7; 
-            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .glass-panel {
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 2rem;
+            border-radius: 2.5rem;
+            width: 100%;
+            max-width: 600px;
+            padding: 3rem;
         }
 
-        .hidden-content { display: none; }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
-        }
+        .hidden-content { display: none !important; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        input[type="checkbox"] {
-            accent-color: var(--indigo);
-            width: 1.2rem;
-            height: 1.2rem;
-            cursor: pointer;
+        .lockout-screen {
+            background: #000;
+            color: var(--red);
+            text-align: center;
+            z-index: 9999;
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-6">
+<body id="body-context">
 
-    <div id="gateway" class="max-w-2xl w-full glass-panel p-8 md:p-12 text-center fade-in">
-        <span class="font-mono text-[10px] text-indigo-400 uppercase tracking-[0.4em] mb-4 block">Enrolment Verification</span>
-        <h1 class="text-4xl font-bold italic tracking-tighter uppercase mb-6">Unit <span class="text-indigo-500">UEEEL0019</span></h1>
+    <div id="gateway" class="glass-panel text-center">
+        <span class="font-mono text-[10px] text-indigo-400 uppercase tracking-[0.5em] mb-6 block">System Access Protocol</span>
+        <h1 class="text-4xl font-black italic tracking-tighter uppercase mb-8">Unit <span class="text-indigo-500">UEEEL0019</span></h1>
         
-        <div class="text-left bg-black/40 p-6 rounded-xl border border-white/5 mb-8">
-            <h2 class="text-xs font-black uppercase tracking-widest text-zinc-500 mb-4">Unit Declaration</h2>
-            <p class="text-sm text-zinc-400 leading-relaxed mb-4">
-                By entering this module, I acknowledge that the technical information provided regarding **Direct Current (D.C.) Machines** is for educational purposes only. I agree to follow all AS/NZS safety standards and site-specific SWMS when performing practical tasks.
+        <div class="text-left bg-zinc-950 p-6 rounded-2xl border border-white/5 mb-8">
+            <h2 class="text-[10px] font-black uppercase text-zinc-500 mb-4 tracking-widest">Unit Declaration v5.0</h2>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+                Entry requires formal acceptance of the Certificate III Electrotechnology Machine Safety Standards. Declining this declaration will result in a permanent administrative lockout from this digital hub.
             </p>
-            
-            <label class="flex items-center gap-4 cursor-pointer group">
-                <input type="checkbox" id="declarationCheck">
-                <span class="text-xs font-bold text-zinc-300 group-hover:text-white transition">I agree to the unit terms and safety declaration.</span>
-            </label>
         </div>
 
-        <button onclick="grantAccess()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-indigo-500/20 uppercase text-xs tracking-widest">
-            Enter Module
-        </button>
+        <div class="flex flex-col gap-4">
+            <button onclick="grantAccess()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl transition uppercase text-[10px] tracking-widest">
+                Agree & Enter
+            </button>
+            <button onclick="triggerLockout()" class="w-full bg-zinc-900 hover:bg-red-900/20 hover:text-red-500 text-zinc-500 font-bold py-4 rounded-xl transition uppercase text-[10px] tracking-widest border border-transparent hover:border-red-500/50">
+                Decline Access
+            </button>
+        </div>
     </div>
 
-    <div id="mainContent" class="hidden-content max-w-4xl w-full py-12">
-        <header class="mb-12 border-b border-white/5 pb-12">
-            <div class="flex justify-between items-center mb-8">
-                <div class="uppercase font-black text-2xl italic tracking-tighter">XCLIPSE <span class="text-indigo-500 text-base">Studio</span></div>
-                <button onclick="resetAccess()" class="text-[9px] font-bold text-zinc-700 uppercase hover:text-red-500 transition">Reset Access</button>
-            </div>
-            <h1 class="text-6xl font-black tracking-tighter uppercase italic">DC <span class="text-indigo-500">Machines</span></h1>
-            <p class="text-zinc-500 mt-4 uppercase tracking-[0.3em] text-[10px] font-bold">UEEEL0019 // Access Granted</p>
-        </header>
-
-        <div class="grid md:grid-cols-2 gap-6 fade-in">
-            <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5">
-                <span class="text-indigo-400 font-mono text-[10px] uppercase font-bold mb-4 block">Topic 01</span>
-                <h3 class="text-xl font-bold mb-2">Machine Fundamentals</h3>
-                <p class="text-zinc-500 text-sm">Introduction to armature windings, commutators, and brush assemblies.</p>
-            </div>
-            <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5">
-                <span class="text-indigo-400 font-mono text-[10px] uppercase font-bold mb-4 block">Topic 02</span>
-                <h3 class="text-xl font-bold mb-2">Operational Theory</h3>
-                <p class="text-zinc-500 text-sm">Calculations for Back-EMF and Torque in D.C. Shunt and Series motors.</p>
-            </div>
+    <div id="mainContent" class="hidden-content w-full max-w-4xl p-10">
+        <div class="flex justify-between items-center border-b border-white/5 pb-8 mb-8">
+            <h2 class="text-2xl font-black italic tracking-tighter uppercase">XCLIPSE <span class="text-indigo-500">SECURE</span></h2>
+            <button onclick="resetAccess()" class="text-[9px] font-mono text-zinc-700 hover:text-white uppercase">End Session</button>
         </div>
+        <div class="p-12 bg-indigo-500/5 border border-indigo-500/10 rounded-3xl">
+            <h3 class="text-3xl font-bold mb-4">Welcome to DC Machines</h3>
+            <p class="text-zinc-500">All data modules are now decrypted and ready for audit.</p>
+        </div>
+    </div>
+
+    <div id="lockoutOverlay" class="hidden-content lockout-screen p-10">
+        <div class="mb-6 text-6xl">🔒</div>
+        <h1 class="text-4xl font-black uppercase tracking-tighter mb-4">Access Revoked</h1>
+        <p class="text-zinc-600 font-mono text-[10px] uppercase tracking-[0.3em]">Hardware ID Flagged // Declaration Refused</p>
+        <div class="mt-12 h-[1px] w-20 bg-red-500/30 mx-auto"></div>
     </div>
 
     <script>
-        // Check for existing agreement on page load
+        const gateway = document.getElementById('gateway');
+        const content = document.getElementById('mainContent');
+        const lockout = document.getElementById('lockoutOverlay');
+
         window.onload = function() {
-            const hasAgreed = localStorage.getItem('ueeel0019_agreed');
-            if (hasAgreed === 'true') {
+            // Check if user is already blocked
+            if (localStorage.getItem('ueeel0019_blocked') === 'true') {
+                applyPermanentLock();
+                return;
+            }
+            
+            // Check if user has already agreed
+            if (localStorage.getItem('ueeel0019_agreed') === 'true') {
                 showContent();
             }
         };
 
         function grantAccess() {
-            const checkbox = document.getElementById('declarationCheck');
-            
-            if (checkbox.checked) {
-                // Save choice to client-side localStorage
-                localStorage.setItem('ueeel0019_agreed', 'true');
-                showContent();
-            } else {
-                alert("You must agree to the declaration to proceed.");
+            localStorage.setItem('ueeel0019_agreed', 'true');
+            showContent();
+        }
+
+        function triggerLockout() {
+            const confirmDecline = confirm("WARNING: Declining will permanently lock you out of this unit. Proceed?");
+            if (confirmDecline) {
+                localStorage.setItem('ueeel0019_blocked', 'true');
+                applyPermanentLock();
             }
         }
 
-        function showContent() {
-            document.getElementById('gateway').style.display = 'none';
-            const content = document.getElementById('mainContent');
-            content.classList.remove('hidden-content');
-            content.classList.add('fade-in');
+        function applyPermanentLock() {
+            gateway.classList.add('hidden-content');
+            content.classList.add('hidden-content');
+            lockout.classList.remove('hidden-content');
+            document.body.style.backgroundColor = "#000";
         }
 
-        // Utility to clear localStorage (for testing or logging out)
+        function showContent() {
+            gateway.classList.add('hidden-content');
+            content.classList.remove('hidden-content');
+        }
+
         function resetAccess() {
             localStorage.removeItem('ueeel0019_agreed');
             location.reload();
