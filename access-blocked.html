@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XCLIPSE | ACCESS REVOKED</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        :root {
+            --bg: #050000;
+            --red: #ff0000;
+            --zinc-900: #0a0a0a;
+        }
+
+        body { 
+            font-family: 'JetBrains Mono', monospace; 
+            background-color: var(--bg); 
+            color: var(--red); 
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .terminal-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .glitch-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .status-box {
+            background: rgba(255, 0, 0, 0.05);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            padding: 2rem;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 0, 0, 0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        .log-line {
+            font-size: 0.65rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .btn-return {
+            margin-top: 3rem;
+            border: 1px solid var(--red);
+            padding: 12px 24px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-return:hover {
+            background: var(--red);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal-container">
+        
+        <div class="glitch-text">ACCESS<br>REVOKED</div>
+        
+        <div class="status-box">
+            <div class="scanline"></div>
+            
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-3 h-3 bg-red-600 rounded-full animate-pulse"></div>
+                <span class="text-xs font-black tracking-widest">Hardware ID Blacklisted</span>
+            </div>
+
+            <div class="space-y-1">
+                <p class="log-line">>> [SYSTEM] INITIALIZING SECURITY PROTOCOL 0x884</p>
+                <p class="log-line">>> [AUTH] DECLARATION_REFUSED_BY_USER</p>
+                <p class="log-line">>> [LOG] IP_FLAGGED: BORDERTOWN_SA_NODE</p>
+                <p class="log-line">>> [CORE] UEEEL0019_ACCESS: PERMANENT_DENIAL</p>
+                <p class="log-line text-white">>> STATUS: TERMINATED</p>
+            </div>
+        </div>
+
+        <div class="mt-8 text-[10px] opacity-40 leading-relaxed">
+            Administrative action has been recorded. Your session has been flagged for non-compliance with the unit safety declaration. Contact the system administrator if you believe this is an error.
+        </div>
+
+        <a href="learning-hub.html" class="btn-return">Return to Hub</a>
+
+    </div>
+
+    <script>
+        // If they somehow land here but aren't actually blocked, give them a way out
+        // but if they ARE blocked, ensure they can't see anything else.
+        if (localStorage.getItem('ueeel0019_blocked') !== 'true') {
+            console.log("No block detected. Redirecting...");
+            // window.location.href = "learning-hub.html"; 
+        }
+    </script>
+</body>
+</html>
