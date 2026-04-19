@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XCLIPSE | UEEEL0019 Gateway</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        :root {
+            --bg: #030303;
+            --indigo: #6366f1;
+            --success: #10b981;
+        }
+
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            background-color: var(--bg); 
+            color: #e4e4e7; 
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 2rem;
+        }
+
+        .hidden-content { display: none; }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        input[type="checkbox"] {
+            accent-color: var(--indigo);
+            width: 1.2rem;
+            height: 1.2rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-6">
+
+    <div id="gateway" class="max-w-2xl w-full glass-panel p-8 md:p-12 text-center fade-in">
+        <span class="font-mono text-[10px] text-indigo-400 uppercase tracking-[0.4em] mb-4 block">Enrolment Verification</span>
+        <h1 class="text-4xl font-bold italic tracking-tighter uppercase mb-6">Unit <span class="text-indigo-500">UEEEL0019</span></h1>
+        
+        <div class="text-left bg-black/40 p-6 rounded-xl border border-white/5 mb-8">
+            <h2 class="text-xs font-black uppercase tracking-widest text-zinc-500 mb-4">Unit Declaration</h2>
+            <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+                By entering this module, I acknowledge that the technical information provided regarding **Direct Current (D.C.) Machines** is for educational purposes only. I agree to follow all AS/NZS safety standards and site-specific SWMS when performing practical tasks.
+            </p>
+            
+            <label class="flex items-center gap-4 cursor-pointer group">
+                <input type="checkbox" id="declarationCheck">
+                <span class="text-xs font-bold text-zinc-300 group-hover:text-white transition">I agree to the unit terms and safety declaration.</span>
+            </label>
+        </div>
+
+        <button onclick="grantAccess()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-indigo-500/20 uppercase text-xs tracking-widest">
+            Enter Module
+        </button>
+    </div>
+
+    <div id="mainContent" class="hidden-content max-w-4xl w-full py-12">
+        <header class="mb-12 border-b border-white/5 pb-12">
+            <div class="flex justify-between items-center mb-8">
+                <div class="uppercase font-black text-2xl italic tracking-tighter">XCLIPSE <span class="text-indigo-500 text-base">Studio</span></div>
+                <button onclick="resetAccess()" class="text-[9px] font-bold text-zinc-700 uppercase hover:text-red-500 transition">Reset Access</button>
+            </div>
+            <h1 class="text-6xl font-black tracking-tighter uppercase italic">DC <span class="text-indigo-500">Machines</span></h1>
+            <p class="text-zinc-500 mt-4 uppercase tracking-[0.3em] text-[10px] font-bold">UEEEL0019 // Access Granted</p>
+        </header>
+
+        <div class="grid md:grid-cols-2 gap-6 fade-in">
+            <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5">
+                <span class="text-indigo-400 font-mono text-[10px] uppercase font-bold mb-4 block">Topic 01</span>
+                <h3 class="text-xl font-bold mb-2">Machine Fundamentals</h3>
+                <p class="text-zinc-500 text-sm">Introduction to armature windings, commutators, and brush assemblies.</p>
+            </div>
+            <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5">
+                <span class="text-indigo-400 font-mono text-[10px] uppercase font-bold mb-4 block">Topic 02</span>
+                <h3 class="text-xl font-bold mb-2">Operational Theory</h3>
+                <p class="text-zinc-500 text-sm">Calculations for Back-EMF and Torque in D.C. Shunt and Series motors.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check for existing agreement on page load
+        window.onload = function() {
+            const hasAgreed = localStorage.getItem('ueeel0019_agreed');
+            if (hasAgreed === 'true') {
+                showContent();
+            }
+        };
+
+        function grantAccess() {
+            const checkbox = document.getElementById('declarationCheck');
+            
+            if (checkbox.checked) {
+                // Save choice to client-side localStorage
+                localStorage.setItem('ueeel0019_agreed', 'true');
+                showContent();
+            } else {
+                alert("You must agree to the declaration to proceed.");
+            }
+        }
+
+        function showContent() {
+            document.getElementById('gateway').style.display = 'none';
+            const content = document.getElementById('mainContent');
+            content.classList.remove('hidden-content');
+            content.classList.add('fade-in');
+        }
+
+        // Utility to clear localStorage (for testing or logging out)
+        function resetAccess() {
+            localStorage.removeItem('ueeel0019_agreed');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
