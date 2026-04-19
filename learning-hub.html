@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XCLIPSE | LEARNING HUB</title>
+    <title>XCLIPSE | LEARNING HUB V5.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
-            --bg: #050505;
-            --card: #0d0d0d;
+            --bg: #030303;
+            --card: #0a0a0a;
             --indigo: #6366f1;
             --zinc-800: #27272a;
+            --success: #10b981;
         }
 
         body { 
@@ -33,122 +34,157 @@
         .unit-card {
             background: var(--card);
             border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 1.25rem;
-            padding: 2rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1.5rem;
+            padding: 2.25rem;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            cursor: pointer;
             text-decoration: none;
         }
 
         .unit-card:hover {
             border-color: var(--indigo);
-            background: #0f0f11;
-            transform: translateY(-4px);
+            background: #0d0d0f;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
         .active-glow {
-            box-shadow: 0 0 30px rgba(99, 102, 241, 0.08);
-            border: 1px solid rgba(99, 102, 241, 0.3) !important;
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.2) !important;
         }
 
         .status-badge {
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding: 4px 10px;
-            border-radius: 4px;
+            letter-spacing: 0.2em;
+            padding: 5px 12px;
+            border-radius: 6px;
             background: rgba(255,255,255,0.03);
             color: #71717a;
         }
+
+        .badge-active { background: rgba(99, 102, 241, 0.1); color: var(--indigo); border: 1px solid rgba(99, 102, 241, 0.2); }
+        .badge-success { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.2); }
+
+        .btn-launch {
+            background: var(--indigo);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .btn-launch:hover { opacity: 0.8; transform: scale(1.02); }
     </style>
 </head>
-<body class="p-8 md:p-16">
+<body class="p-8 md:p-20">
 
     <div class="max-w-7xl mx-auto">
-        <header class="mb-16">
-            <div class="flex items-center gap-4 mb-4">
-                <span class="h-[1px] w-12 bg-indigo-500"></span>
-                <span class="mono text-[10px] uppercase tracking-[0.5em] text-indigo-400">South Australia Trade Portal</span>
+        <header class="mb-20">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="h-[2px] w-12 bg-indigo-500"></span>
+                <span class="mono text-[10px] uppercase tracking-[0.5em] text-indigo-400">Trade Portal v5.0 // April 2026</span>
             </div>
-            <h1 class="text-6xl font-black italic tracking-tighter uppercase mb-2">Learning <span class="text-indigo-500 italic">Hub</span></h1>
-            <p class="text-zinc-500 mono text-xs uppercase tracking-widest">UEE30820 Certificate III in Electrotechnology Electrician</p>
+            <h1 class="text-7xl font-black italic tracking-tighter uppercase mb-4">Master <span class="text-white">Curriculum</span></h1>
+            <p class="text-zinc-500 mono text-xs uppercase tracking-[0.3em]">Certificate III Electrotechnology // Apprentice: Leeroy Matutuva</p>
         </header>
 
-        <section class="mb-12">
-            <h2 class="text-xs font-black uppercase tracking-[0.3em] text-zinc-600 mb-6 flex items-center gap-2">
-                <span class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></span> Open Active Module
+        <section class="mb-16">
+            <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 mb-8 flex items-center gap-3">
+                <span class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-ping"></span> Currently Auditing
             </h2>
-            
-            <a href="UEEEL0021.html" class="unit-card active-glow p-8 block">
-                <div class="flex justify-between items-start mb-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                
+                <a href="UEEEL0021.html" class="unit-card active-glow">
                     <div>
-                        <span class="mono text-indigo-500 text-xs font-bold mb-2 block tracking-widest">UEEEL0021</span>
-                        <h3 class="text-4xl font-bold text-white mb-2">Magnetic and Electromagnetic Devices</h3>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="mono text-indigo-400 text-xs font-bold tracking-widest">UEEEL0021</span>
+                            <span class="status-badge badge-active">Active Audit</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-3 leading-tight">Magnetic & Electromagnetic Devices</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed mb-6">Deep dive into B-H Curves, Faraday's Law, and Inductance ($L$). Focus on trade school assessment 2.</p>
                     </div>
-                    <span class="status-badge !text-indigo-400 !bg-indigo-500/10">In Progress</span>
-                </div>
-                <p class="text-zinc-400 text-sm max-w-xl mb-8">Mastering flux, reluctance, and electromagnetic induction. Click to resume Topic 05: Inductance and Back-EMF logic.</p>
-                <div class="flex items-center gap-4">
-                    <div class="bg-indigo-600 text-white text-xs font-bold px-8 py-4 rounded-xl hover:bg-indigo-500 transition shadow-lg shadow-indigo-500/20">
-                        Launch Module 021
+                    <div class="btn-launch text-center">Open 021 Portal</div>
+                </a>
+
+                <a href="UEEEL0019.html" class="unit-card active-glow">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="mono text-indigo-400 text-xs font-bold tracking-widest">UEEEL0019</span>
+                            <span class="status-badge badge-active">New v5.0</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-3 leading-tight">DC Machines Problem Solving</h3>
+                        <p class="text-zinc-500 text-sm leading-relaxed mb-6">Analysis of armature torque, back-EMF ($E_b$), and commutation dynamics in motors and generators.</p>
                     </div>
-                    <span class="text-zinc-600 text-[10px] mono uppercase tracking-widest">B-H Curves / Faraday / Lenz</span>
-                </div>
-            </a>
+                    <div class="btn-launch text-center">Open 019 Portal</div>
+                </a>
+
+            </div>
         </section>
 
         <section>
-            <h2 class="text-xs font-black uppercase tracking-[0.3em] text-zinc-600 mb-6">Unit Curriculum Portfolio</h2>
+            <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 mb-8">Archived & Future Units</h2>
             <div class="unit-grid">
                 
-                <a href="UEEEL0020.html" class="unit-card">
+                <a href="UEEEL0020.html" class="unit-card opacity-60 hover:opacity-100">
                     <div>
                         <span class="mono text-zinc-500 text-[10px] mb-2 block">UEEEL0020</span>
-                        <h4 class="text-lg font-bold text-zinc-200 mb-2">LV AC Circuits</h4>
-                        <p class="text-zinc-500 text-xs mb-4">Single and three-phase impedance and power factor correction.</p>
+                        <h4 class="text-xl font-bold text-zinc-200 mb-2">LV AC Circuits</h4>
+                        <p class="text-zinc-600 text-xs mb-6">Impedance, resonance, and power factor analysis for industrial AC supplies.</p>
                     </div>
                     <div class="flex items-center justify-between">
-                        <span class="status-badge">View Code</span>
-                        <span class="text-[9px] font-black uppercase text-green-500/80 mono">Completed</span>
+                        <span class="status-badge badge-success">Completed</span>
+                        <span class="mono text-[9px] text-zinc-700">Audit Ready</span>
                     </div>
                 </a>
 
-                <a href="UEEEL0019.html" class="unit-card">
-                    <div>
-                        <span class="mono text-zinc-500 text-[10px] mb-2 block">UEEEL0019</span>
-                        <h4 class="text-lg font-bold text-zinc-200 mb-2">DC Machines</h4>
-                        <p class="text-zinc-500 text-xs mb-4">Motor/Generator operation, speed control, and characteristic curves.</p>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="status-badge">Locked</span>
-                        <span class="text-[9px] font-black uppercase text-zinc-700 mono">Pending</span>
-                    </div>
-                </a>
-
-                <a href="UEEEL0025.html" class="unit-card">
+                <a href="UEEEL0025.html" class="unit-card opacity-60 hover:opacity-100">
                     <div>
                         <span class="mono text-zinc-500 text-[10px] mb-2 block">UEEEL0025</span>
-                        <h4 class="text-lg font-bold text-zinc-200 mb-2">Transformers</h4>
-                        <p class="text-zinc-500 text-xs mb-4">Testing and connecting power and isolation transformers.</p>
+                        <h4 class="text-xl font-bold text-zinc-200 mb-2">Transformers</h4>
+                        <p class="text-zinc-600 text-xs mb-6">Testing, connecting and troubleshooting isolation and power transformers.</p>
                     </div>
                     <div class="flex items-center justify-between">
                         <span class="status-badge">Locked</span>
-                        <span class="text-[9px] font-black uppercase text-zinc-700 mono">Pending</span>
+                        <span class="mono text-[9px] text-zinc-800">Next Semester</span>
                     </div>
                 </a>
+
+                <div class="unit-card opacity-40">
+                    <div>
+                        <span class="mono text-zinc-500 text-[10px] mb-2 block">UEEEL0018</span>
+                        <h4 class="text-xl font-bold text-zinc-400 mb-2">Wiring Systems</h4>
+                        <p class="text-zinc-700 text-xs mb-6">AS/NZS 3000 compliance for cable selection and mechanical protection.</p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="status-badge">Pending</span>
+                    </div>
+                </div>
 
             </div>
         </section>
 
-        <footer class="mt-32 flex justify-between items-center border-t border-white/5 pt-8">
-            <p class="text-[10px] mono text-zinc-700 uppercase tracking-widest">XCLIPSE STUDIO // TRADE OPS 2026</p>
+        <footer class="mt-40 flex flex-col md:flex-row justify-between items-center border-t border-white/5 pt-12 gap-8">
+            <div>
+                <div class="text-2xl font-black italic tracking-tighter text-white uppercase mb-2">XCLIPSE <span class="text-indigo-500">STUDIO</span></div>
+                <p class="text-[9px] mono text-zinc-600 uppercase tracking-[0.5em]">Global Trade Ops // Bordertown SA</p>
+            </div>
             <div class="flex gap-4">
-                <span class="text-[9px] font-bold text-zinc-500 bg-white/5 px-3 py-1 rounded">Year 1 Apprentice</span>
-                <span class="text-[9px] font-bold text-indigo-500 bg-indigo-500/10 px-3 py-1 rounded">UEE30820</span>
+                <div class="bg-white/5 border border-white/5 p-4 rounded-xl text-center min-w-[120px]">
+                    <span class="block text-[10px] font-black text-indigo-500 uppercase mb-1">Year</span>
+                    <span class="text-lg font-bold">01</span>
+                </div>
+                <div class="bg-white/5 border border-white/5 p-4 rounded-xl text-center min-w-[120px]">
+                    <span class="block text-[10px] font-black text-indigo-500 uppercase mb-1">Status</span>
+                    <span class="text-lg font-bold">Active</span>
+                </div>
             </div>
         </footer>
     </div>
