@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XCLIPSE | UEEEL0019 LEARNING</title>
+    
+    <script>
+        if (localStorage.getItem('ueeel0019_blocked') === 'true' || localStorage.getItem('ueeel0019_agreed') !== 'true') {
+            window.location.href = "ueeel0019-get-started.html";
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        :root {
+            --bg: #050505;
+            --card: #0c0c0c;
+            --indigo: #6366f1;
+            --border: rgba(255, 255, 255, 0.05);
+        }
+
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            background-color: var(--bg); 
+            color: #d1d1d6;
+            scroll-behavior: smooth;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .nav-blur {
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .content-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            color: #71717a;
+            transition: all 0.2s;
+        }
+
+        .sidebar-link:hover, .sidebar-link.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--indigo);
+        }
+
+        .key-concept {
+            border-left: 4px solid var(--indigo);
+            background: rgba(99, 102, 241, 0.03);
+            padding: 1.5rem;
+            border-radius: 0 1rem 1rem 0;
+        }
+    </style>
+</head>
+<body class="pt-20">
+
+    <nav class="nav-blur fixed top-0 w-full z-50 py-4">
+        <div class="max-w-[1400px] mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
+                <span class="font-black italic tracking-tighter uppercase text-lg">XCLIPSE <span class="text-indigo-500">LEARNING</span></span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-[10px] mono uppercase tracking-widest text-zinc-500">
+                <span>Subject: UEEEL0019</span>
+                <span class="text-zinc-800">|</span>
+                <span>Topic: DC Machine Fundamentals</span>
+            </div>
+            <button onclick="window.location.href='ueeel0019.html'" class="text-[10px] font-bold border border-indigo-500/30 px-4 py-2 rounded uppercase text-indigo-400 hover:bg-indigo-500 hover:text-white transition">Exit to Audit</button>
+        </div>
+    </nav>
+
+    <div class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row gap-12 mt-12">
+        
+        <aside class="md:w-64 shrink-0 h-fit sticky top-32">
+            <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-600 mb-6">Course Modules</h3>
+            <nav class="space-y-1">
+                <a href="#construction" class="sidebar-link active">01. Machine Construction</a>
+                <a href="#magnetism" class="sidebar-link">02. Electromagnetism</a>
+                <a href="#generators" class="sidebar-link">03. DC Generators</a>
+                <a href="#motors" class="sidebar-link">04. DC Motors</a>
+                <a href="#efficiency" class="sidebar-link">05. Efficiency & Loss</a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 pb-24">
+            
+            <section id="construction" class="mb-20">
+                <span class="mono text-indigo-500 text-xs font-bold uppercase mb-2 block">Module 01</span>
+                <h1 class="text-5xl font-black tracking-tighter uppercase mb-8">Machine <span class="text-indigo-500 italic">Construction</span></h1>
+                
+                <div class="content-card">
+                    <h2 class="text-xl font-bold mb-4">The Stator vs. The Rotor</h2>
+                    <p class="text-zinc-400 mb-6 text-sm leading-relaxed">
+                        Every DC machine, whether acting as a motor or generator, consists of two primary magnetic circuits. One is stationary (Stator) and one is rotating (Rotor/Armature).
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-5 bg-black/40 rounded-xl border border-white/5">
+                            <h4 class="text-indigo-400 font-bold text-xs uppercase mb-2">The Stator (Field)</h4>
+                            <p class="text-[11px] leading-relaxed">Provides the main magnetic flux. Contains the Yoke, Pole Cores, and Field Windings.</p>
+                        </div>
+                        <div class="p-5 bg-black/40 rounded-xl border border-white/5">
+                            <h4 class="text-indigo-400 font-bold text-xs uppercase mb-2">The Rotor (Armature)</h4>
+                            <p class="text-[11px] leading-relaxed">The rotating part where EMF is induced. Includes the Commutator and Brushes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-concept">
+                    <h3 class="text-white font-bold text-sm uppercase mb-2">The Commutator Function</h3>
+                    <p class="text-xs text-zinc-500">
+                        The commutator is a mechanical rectifier. In a generator, it converts AC induced in the armature to DC at the terminals. In a motor, it reverses the current direction in each coil as it passes between poles to maintain unidirectional torque.
+                    </p>
+                </div>
+            </section>
+
+            <section id="magnetism" class="mb-20 pt-10 border-t border-white/5">
+                <span class="mono text-indigo-500 text-xs font-bold uppercase mb-2 block">Module 02</span>
+                <h1 class="text-5xl font-black tracking-tighter uppercase mb-8">Electro<span class="text-indigo-500 italic">magnetism</span></h1>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="content-card mb-0">
+                        <h3 class="font-bold mb-4">Fleming's Rules</h3>
+                        <div class="space-y-4">
+                            <div class="bg-zinc-900/50 p-4 rounded-lg">
+                                <span class="text-indigo-400 text-[10px] font-black uppercase">Right Hand Rule</span>
+                                <p class="text-[11px] mt-1 text-zinc-500">Used for **Generators**. Determines the direction of induced current.</p>
+                            </div>
+                            <div class="bg-zinc-900/50 p-4 rounded-lg">
+                                <span class="text-indigo-400 text-[10px] font-black uppercase">Left Hand Rule</span>
+                                <p class="text-[11px] mt-1 text-zinc-500">Used for **Motors**. Determines the direction of force (motion).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-xl font-bold mb-4 italic">Force on a Conductor</h3>
+                        <div class="bg-black p-6 rounded-2xl border border-indigo-500/20 text-center">
+                            <span class="mono text-2xl text-indigo-500">F = BIl</span>
+                        </div>
+                        <p class="text-[10px] mono text-zinc-600 mt-4 uppercase text-center">
+                            F = Force (N) | B = Flux Density (T)<br>
+                            I = Current (A) | l = Length (m)
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="generators" class="mb-20 pt-10 border-t border-white/5">
+                <span class="mono text-indigo-500 text-xs font-bold uppercase mb-2 block">Module 03</span>
+                <h1 class="text-5xl font-black tracking-tighter uppercase mb-8">DC <span class="text-indigo-500 italic">Generators</span></h1>
+                
+                <div class="content-card">
+                    <h2 class="text-xl font-bold mb-4">Types of Excitation</h2>
+                    <p class="text-sm text-zinc-500 mb-6">Generators are classified based on how their field windings are energized.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg">
+                            <span class="font-bold text-xs uppercase">Shunt Wound</span>
+                            <span class="text-[10px] text-zinc-600 italic">Field in parallel with armature</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg">
+                            <span class="font-bold text-xs uppercase">Series Wound</span>
+                            <span class="text-[10px] text-zinc-600 italic">Field in series with armature</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg">
+                            <span class="font-bold text-xs uppercase">Compound Wound</span>
+                            <span class="text-[10px] text-zinc-600 italic">Combination of both Shunt & Series</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="bg-black py-12 border-t border-white/5">
+        <div class="max-w-[1400px] mx-auto px-6 flex justify-between items-end">
+            <div>
+                <div class="text-2xl font-black italic tracking-tighter uppercase mb-2">XCLIPSE <span class="text-indigo-500">STUDIO</span></div>
+                <p class="text-[9px] mono text-zinc-700 uppercase tracking-widest">Educational Resource // Apprentice Level III</p>
+            </div>
+            <div class="text-[9px] mono text-zinc-800 uppercase text-right">
+                Developed for South Australian Trade Standards<br>
+                © 2026 Xclipse Networks
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
