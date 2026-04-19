@@ -7,50 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
-        
-        :root {
-            --bg: #030303;
-            --indigo: #6366f1;
-            --red: #ef4444;
-        }
-
-        body { 
-            font-family: 'Space Grotesk', sans-serif; 
-            background-color: var(--bg); 
-            color: #e4e4e7; 
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .glass-panel {
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 2.5rem;
-            width: 100%;
-            max-width: 550px;
-            padding: 3.5rem;
-            transition: all 0.5s ease;
-        }
-
-        .loader-bar {
-            height: 2px;
-            width: 0%;
-            background: var(--indigo);
-            box-shadow: 0 0 15px var(--indigo);
-            transition: width 5s linear;
-        }
-
+        :root { --bg: #030303; --indigo: #6366f1; --red: #ef4444; }
+        body { font-family: 'Space Grotesk', sans-serif; background-color: var(--bg); color: #e4e4e7; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .glass-panel { background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2.5rem; width: 100%; max-width: 550px; padding: 3.5rem; }
+        .loader-bar { height: 2px; width: 0%; background: var(--indigo); box-shadow: 0 0 15px var(--indigo); transition: width 5s linear; }
         .hidden-content { display: none !important; }
-
-        .lockout-screen {
-            background: #000;
-            color: var(--red);
-            text-align: center;
-        }
+        .lockout-screen { background: #000; color: var(--red); text-align: center; }
     </style>
 </head>
 <body id="main-body">
@@ -61,95 +23,59 @@
         
         <div id="form-ui">
             <div class="text-left bg-zinc-950 p-6 rounded-2xl border border-white/5 mb-8">
-                <h2 class="text-[10px] font-black uppercase text-zinc-500 mb-4 tracking-widest">Declaration Checklist</h2>
-                <p class="text-xs text-zinc-400 leading-relaxed mb-4">
-                    I verify that I am authorized to access DC Machine technical audits and agree to maintain safety compliance under Certificate III standards.
-                </p>
+                <p class="text-xs text-zinc-400 leading-relaxed mb-4">I verify authorization to access DC Machine technical audits and agree to safety compliance under Certificate III standards.</p>
                 <label class="flex items-center gap-3 cursor-pointer group">
                     <input type="checkbox" id="checkDec" class="accent-indigo-500 w-4 h-4">
                     <span class="text-[10px] font-bold text-zinc-500 group-hover:text-zinc-300 transition uppercase tracking-tighter">Accept Unit Declaration</span>
                 </label>
             </div>
-
             <div class="flex flex-col gap-4">
-                <button onclick="initiateRedirect()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl transition uppercase text-[10px] tracking-widest">
-                    Enter Module
-                </button>
-                <button onclick="triggerLockout()" class="w-full bg-transparent text-zinc-700 hover:text-red-500 font-bold py-2 rounded-xl transition uppercase text-[9px] tracking-widest">
-                    Decline Access
-                </button>
+                <button onclick="initiateRedirect()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl transition uppercase text-[10px] tracking-widest">Enter Module</button>
+                <button onclick="triggerLockout()" class="w-full bg-transparent text-zinc-700 hover:text-red-500 font-bold py-2 rounded-xl transition uppercase text-[9px] tracking-widest">Decline Access</button>
             </div>
         </div>
 
         <div id="redirect-ui" class="hidden-content py-10">
             <h2 class="text-xl font-bold mb-2">Access Granted</h2>
-            <p class="text-zinc-500 text-xs mb-8">Redirecting to Secure Module in <span id="countdown" class="text-indigo-500 font-mono">5</span>s...</p>
-            <div class="w-full bg-white/5 rounded-full overflow-hidden">
-                <div id="progress" class="loader-bar"></div>
-            </div>
+            <p class="text-zinc-500 text-xs mb-8">Redirecting in <span id="countdown" class="text-indigo-500 font-mono">5</span>s...</p>
+            <div class="w-full bg-white/5 rounded-full overflow-hidden"><div id="progress" class="loader-bar"></div></div>
         </div>
     </div>
 
     <div id="lockoutOverlay" class="hidden-content lockout-screen">
         <div class="mb-6 text-6xl">🔒</div>
         <h1 class="text-4xl font-black uppercase tracking-tighter mb-4">Access Revoked</h1>
-        <p class="text-zinc-600 font-mono text-[10px] uppercase tracking-[0.3em]">Declaration Refused // ID Blacklisted</p>
+        <p class="text-zinc-600 font-mono text-[10px] uppercase tracking-[0.3em]">Permanent Lockout: Declaration Refused</p>
     </div>
 
     <script>
-        const gateway = document.getElementById('gateway');
-        const formUI = document.getElementById('form-ui');
-        const redirectUI = document.getElementById('redirect-ui');
-        const lockout = document.getElementById('lockoutOverlay');
-
         window.onload = function() {
             if (localStorage.getItem('ueeel0019_blocked') === 'true') {
-                applyPermanentLock();
+                document.getElementById('gateway').classList.add('hidden-content');
+                document.getElementById('lockoutOverlay').classList.remove('hidden-content');
             }
         };
 
         function initiateRedirect() {
-            const isChecked = document.getElementById('checkDec').checked;
-            
-            if (isChecked) {
+            if (document.getElementById('checkDec').checked) {
                 localStorage.setItem('ueeel0019_agreed', 'true');
-                
-                // Switch UI to Redirect Mode
-                formUI.classList.add('hidden-content');
-                redirectUI.classList.remove('hidden-content');
-                
-                // Trigger Progress Bar
-                setTimeout(() => {
-                    document.getElementById('progress').style.width = '100%';
-                }, 100);
-
-                // Countdown Logic
+                document.getElementById('form-ui').classList.add('hidden-content');
+                document.getElementById('redirect-ui').classList.remove('hidden-content');
+                setTimeout(() => { document.getElementById('progress').style.width = '100%'; }, 100);
                 let seconds = 5;
-                const interval = setInterval(() => {
+                setInterval(() => {
                     seconds--;
                     document.getElementById('countdown').innerText = seconds;
-                    if (seconds <= 0) {
-                        clearInterval(interval);
-                        window.location.href = "UEEEL0019.html";
-                    }
+                    if (seconds <= 0) window.location.href = "ueeel0019.html";
                 }, 1000);
-
-            } else {
-                alert("Please check the declaration box to proceed.");
-            }
+            } else { alert("Check the declaration box to proceed."); }
         }
 
         function triggerLockout() {
             if (confirm("Declining will result in a permanent lockout. Proceed?")) {
                 localStorage.setItem('ueeel0019_blocked', 'true');
-                applyPermanentLock();
+                location.reload();
             }
-        }
-
-        function applyPermanentLock() {
-            gateway.classList.add('hidden-content');
-            lockout.classList.remove('hidden-content');
-            document.body.style.backgroundColor = "#000";
         }
     </script>
 </body>
