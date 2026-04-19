@@ -30,19 +30,25 @@
                 </label>
             </div>
             <div class="flex flex-col gap-4">
-                <button onclick="initiateRedirect()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl transition uppercase text-[10px] tracking-widest">Enter Module</button>
-                <button onclick="triggerLockout()" class="w-full bg-transparent text-zinc-700 hover:text-red-500 font-bold py-2 rounded-xl transition uppercase text-[9px] tracking-widest">Decline Access</button>
+                <button onclick="initiateRedirect()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded-xl transition uppercase text-[10px] tracking-widest shadow-lg shadow-indigo-500/10">
+                    Enter Module
+                </button>
+                <button onclick="triggerLockout()" class="w-full bg-transparent text-zinc-700 hover:text-red-500 font-bold py-2 rounded-xl transition uppercase text-[9px] tracking-widest">
+                    Decline Access
+                </button>
             </div>
         </div>
 
         <div id="redirect-ui" class="hidden-content py-10">
             <h2 class="text-xl font-bold mb-2">Access Granted</h2>
             <p class="text-zinc-500 text-xs mb-8">Redirecting in <span id="countdown" class="text-indigo-500 font-mono">5</span>s...</p>
-            <div class="w-full bg-white/5 rounded-full overflow-hidden"><div id="progress" class="loader-bar"></div></div>
+            <div class="w-full bg-white/5 rounded-full overflow-hidden">
+                <div id="progress" class="loader-bar"></div>
+            </div>
         </div>
     </div>
 
-    <div id="lockoutOverlay" class="hidden-content lockout-screen">
+    <div id="lockoutOverlay" class="hidden-content lockout-screen p-10">
         <div class="mb-6 text-6xl">🔒</div>
         <h1 class="text-4xl font-black uppercase tracking-tighter mb-4">Access Revoked</h1>
         <p class="text-zinc-600 font-mono text-[10px] uppercase tracking-[0.3em]">Permanent Lockout: Declaration Refused</p>
@@ -50,7 +56,11 @@
 
     <script>
         window.onload = function() {
+            // Priority Check: If blocked, skip gateway and go to blocked page
             if (localStorage.getItem('ueeel0019_blocked') === 'true') {
+                window.location.href = "access-blocked.html";
+                
+                // Fallback if file is missing
                 document.getElementById('gateway').classList.add('hidden-content');
                 document.getElementById('lockoutOverlay').classList.remove('hidden-content');
             }
@@ -61,20 +71,28 @@
                 localStorage.setItem('ueeel0019_agreed', 'true');
                 document.getElementById('form-ui').classList.add('hidden-content');
                 document.getElementById('redirect-ui').classList.remove('hidden-content');
+                
                 setTimeout(() => { document.getElementById('progress').style.width = '100%'; }, 100);
+                
                 let seconds = 5;
-                setInterval(() => {
+                const timer = setInterval(() => {
                     seconds--;
                     document.getElementById('countdown').innerText = seconds;
-                    if (seconds <= 0) window.location.href = "ueeel0019.html";
+                    if (seconds <= 0) {
+                        clearInterval(timer);
+                        window.location.href = "ueeel0019.html";
+                    }
                 }, 1000);
-            } else { alert("Check the declaration box to proceed."); }
+            } else { 
+                alert("You must accept the declaration to proceed."); 
+            }
         }
 
         function triggerLockout() {
-            if (confirm("Declining will result in a permanent lockout. Proceed?")) {
+            if (confirm("CRITICAL: Declining will result in a permanent lockout from this unit. Proceed?")) {
                 localStorage.setItem('ueeel0019_blocked', 'true');
-                location.reload();
+                // Instant redirect to the dedicated blocked page
+                window.location.href = "access-blocked.html";
             }
         }
     </script>
