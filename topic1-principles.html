@@ -14,276 +14,302 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
-            --brand-primary: #3b82f6; /* Professional Blue */
-            --brand-dark: #0f172a;
-            --surface: #ffffff;
-            --text-main: #1e293b;
-            --border-ui: #e2e8f0;
+            --bg: #030303;
+            --card: #0a0a0a;
+            --accent: #a855f7; /* Electric Purple */
+            --accent-glow: rgba(168, 85, 247, 0.4);
+            --zinc-800: #18181b;
+            --zinc-900: #09090b;
         }
 
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
         body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f8fafc; 
-            color: var(--text-main); 
-            line-height: 1.6;
+            font-family: 'Space Grotesk', sans-serif; 
+            background-color: var(--bg); 
+            color: #d1d1d6; 
+            line-height: 1.8;
+            overflow-x: hidden;
         }
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Navigation Styling */
-        .nav-sticky {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border-ui);
+        /* Background Grid */
+        .grid-overlay {
+            background-image: radial-gradient(var(--accent) 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+            opacity: 0.05;
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        /* Content Blocks */
-        .module-card {
-            background: white;
-            border: 1px solid var(--border-ui);
-            border-radius: 1rem;
-            padding: 2.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        /* Navigation */
+        .nav-blur {
+            background: rgba(3, 3, 3, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.1);
         }
 
-        /* Technical Highlight Panels */
-        .tech-panel {
-            border-left: 4px solid var(--brand-primary);
-            background: #eff6ff;
-            padding: 2rem;
-            border-radius: 0 0.75rem 0.75rem 0;
-        }
-
-        /* Learning Objectives / List Styling */
-        .check-list li {
+        /* Glass Panels */
+        .glass-panel {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 2rem;
             position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-        .check-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--brand-primary);
-            font-weight: bold;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Formula Boxes */
-        .formula-box {
-            background: var(--brand-dark);
-            color: #60a5fa;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            text-align: center;
-            font-size: 1.25rem;
+        .glass-panel:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
-        /* Buttons */
-        .btn-primary {
-            background: var(--brand-primary);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: opacity 0.2s;
+        /* Formula Typography */
+        .formula-card {
+            background: #000;
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            border-radius: 0 1.5rem 1.5rem 0;
+            box-shadow: 10px 0 30px var(--accent-glow);
         }
-        .btn-primary:hover { opacity: 0.9; }
+
+        .purple-glow {
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
 
         /* Animation */
-        .fade-in {
-            animation: fadeIn 0.6s ease-in forwards;
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
+
+        .step-tag {
+            background: var(--accent);
+            color: white;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 2px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="nav-sticky fixed top-0 w-full z-50">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+    <div class="grid-overlay"></div>
+
+    <nav class="nav-blur fixed top-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold">A</div>
-                <span class="font-extrabold text-xl tracking-tight text-slate-900">APPRENTICES<span class="text-blue-600 underline decoration-2">GUIDE</span></span>
+                <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse shadow-[0_0_10px_#a855f7]"></div>
+                <span class="font-black italic text-xl uppercase tracking-tighter text-white">APPRENTICES<span class="text-purple-500">GUIDE</span></span>
             </div>
-            <div class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-widest text-slate-500">
-                <a href="UEEEL0019-LEARNING-HUB.html" class="hover:text-blue-600 transition">Learning Hub</a>
-                <span>Unit: UEEEL0019</span>
+            <div class="hidden md:flex gap-10 items-center">
+                <span class="text-[9px] mono text-zinc-600 uppercase tracking-[0.4em]">UEEEL0019 // BORDERTOWN_NODE</span>
+                <a href="UEEEL0019-LEARNING-HUB.html" class="text-[10px] font-bold border border-purple-500/20 px-6 py-2 rounded-full hover:bg-purple-500 hover:text-white transition uppercase tracking-widest text-zinc-400">Exit Hub</a>
             </div>
         </div>
     </nav>
 
-    <header class="pt-40 pb-20 bg-slate-50 border-b border-slate-200">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-widest rounded-full mb-6">
-                Module 1.1 // Core Theory
-            </div>
-            <h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-8">
-                Introduction to <br>
-                <span class="text-blue-600">Machine Principles</span>
-            </h1>
-            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
-                Motors and generators are the backbone of the Electrotechnology industry. Understanding their conversion principles—turning electrical energy into mechanical drive and vice versa—is the first step toward mastering D.C. machines.
-            </p>
-        </div>
-    </header>
+    <main class="relative z-10 max-w-7xl mx-auto px-8 pt-40 pb-32">
 
-    <main class="max-w-5xl mx-auto px-6 py-20 space-y-24">
-
-        <section class="fade-in">
-            <div class="grid md:grid-cols-2 gap-12 items-start">
-                <div class="space-y-6">
-                    <h2 class="text-2xl font-bold text-slate-900">1.1 Introduction</h2>
-                    <p class="text-slate-600">
-                        Motors and generators play a vital role in our trade. Motors convert electrical energy to mechanical energy and provide the driving power for many electrical machines. 
+        <section class="mb-40 reveal">
+            <div class="max-w-4xl">
+                <span class="mono text-purple-500 text-xs font-bold uppercase tracking-[0.5em] block mb-6">Topic 01 // Machine Principles</span>
+                <h1 class="text-7xl md:text-9xl font-black tracking-tighter uppercase italic text-white leading-[0.85] mb-12">
+                    Energy <br><span class="text-purple-500 purple-glow">Conversion</span>
+                </h1>
+                <div class="grid md:grid-cols-2 gap-16 text-zinc-500">
+                    <p class="text-lg leading-relaxed">
+                        Motors and generators play a vital role in the Electrotechnology industry. 
+                        Motors convert electrical energy to mechanical energy and are used to provide the driving power for many electrical machines. 
                     </p>
-                    <p class="text-slate-600">
-                        Conversely, generators convert mechanical energy to electrical energy, which powers our modern society. Direct current (d.c.) motors are utilized in a vast array of applications, specifically in heavy-duty or precision environments.
+                    <p class="text-lg leading-relaxed">
+                        Generators convert mechanical energy to electrical energy which powers our modern society. This topic establishes the foundational physics required for your UEEEL0019 certification.
                     </p>
                 </div>
-                <div class="tech-panel">
-                    <h4 class="font-bold text-blue-800 text-sm uppercase mb-4">Core Applications</h4>
-                    <ul class="text-sm text-slate-700 space-y-3 check-list">
-                        <li>Industrial Pumps & Winches</li>
-                        <li>Hoists & Lifting Equipment</li>
-                        <li>HVAC Systems</li>
-                        <li>Gate and Door Automation</li>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-12 gap-8 mb-32 reveal">
+            <div class="md:col-span-8 glass-panel p-12">
+                <h2 class="text-3xl font-black uppercase italic text-white mb-8">1.1 Introduction</h2>
+                <div class="space-y-8 text-zinc-400">
+                    <p>
+                        Direct current (d.c.) motors can be used in a wide range of applications, and are commonly seen in the world of <span class="text-white font-bold">pumps, winches and hoists</span>, HVAC (heating, ventilation and air conditioning), transport and gate or door automation.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="p-6 bg-zinc-900/50 rounded-2xl border border-white/5">
+                            <h4 class="text-purple-500 font-bold text-xs uppercase mb-2">Motor Role</h4>
+                            <p class="text-[11px]">Drive systems for mechanical displacement and rotation.</p>
+                        </div>
+                        <div class="p-6 bg-zinc-900/50 rounded-2xl border border-white/5">
+                            <h4 class="text-purple-500 font-bold text-xs uppercase mb-2">Generator Role</h4>
+                            <p class="text-[11px]">Primary source of society-scale electrical energy conversion.</p>
+                        </div>
+                    </div>
+                    <p class="text-sm border-l-2 border-purple-500 pl-6 italic">
+                        "The design and construction of d.c. motors and generators are essentially the same. Their difference lies in the flow of energy."
+                    </p>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 space-y-8">
+                <div class="glass-panel p-8 bg-purple-500/5 border-purple-500/20">
+                    <h3 class="text-white font-bold text-xs uppercase mb-6 tracking-widest">Growth Sectors</h3>
+                    <p class="text-[11px] text-zinc-500 mb-6">Recent growth has been in electric vehicles of all types:</p>
+                    <ul class="space-y-3 text-[10px] font-bold uppercase tracking-wider text-zinc-300">
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-purple-500"></span> Wheelchairs</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-purple-500"></span> Electric Mowers</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-purple-500"></span> Go-Karts & Buggies</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-purple-500"></span> Farming ATVs</li>
+                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-purple-500"></span> Unmanned Vehicles</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section class="module-card">
-            <h3 class="text-xl font-bold mb-8 flex items-center gap-3">
-                <span class="w-1.5 h-6 bg-blue-600 rounded"></span>
-                The Rise of E-Mobility
-            </h3>
-            <div class="prose prose-slate max-w-none text-slate-600">
-                <p class="mb-6">
-                    Recent growth in the electrical sector has been driven by electric vehicles of all types. This isn't just limited to cars; as an apprentice, you are increasingly likely to encounter D.C. systems in:
-                </p>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
-                    <div class="p-4 rounded-lg border border-slate-100 bg-slate-50 text-center">
-                        <span class="font-bold text-slate-900 block text-sm">Wheelchairs</span>
-                    </div>
-                    <div class="p-4 rounded-lg border border-slate-100 bg-slate-50 text-center">
-                        <span class="font-bold text-slate-900 block text-sm">Electric Mowers</span>
-                    </div>
-                    <div class="p-4 rounded-lg border border-slate-100 bg-slate-50 text-center">
-                        <span class="font-bold text-slate-900 block text-sm">Go-Karts & Buggies</span>
-                    </div>
-                    <div class="p-4 rounded-lg border border-slate-100 bg-slate-50 text-center">
-                        <span class="font-bold text-slate-900 block text-sm">Farming ATVs</span>
-                    </div>
-                    <div class="p-4 rounded-lg border border-slate-100 bg-slate-50 text-center">
-                        <span class="font-bold text-slate-900 block text-sm">Unmanned Vehicles</span>
-                    </div>
+        <section class="mb-32 reveal">
+            <h2 class="text-4xl font-black uppercase italic text-white mb-12 text-center">The D.C. <span class="text-purple-500">Alternative</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-panel p-10 text-center">
+                    <div class="mono text-purple-500 text-[10px] mb-4 uppercase">Torque Profile</div>
+                    <h4 class="text-xl font-bold text-white mb-4">High Starting Torque</h4>
+                    <p class="text-xs text-zinc-500">Superior to A.C. motors for heavy-load startups (Winches/Lifts).</p>
+                </div>
+                <div class="glass-panel p-10 text-center">
+                    <div class="mono text-purple-500 text-[10px] mb-4 uppercase">Weight Ratio</div>
+                    <h4 class="text-xl font-bold text-white mb-4">Lower Weight</h4>
+                    <p class="text-xs text-zinc-500">Delivers similar power to A.C. units at a fraction of the mass.</p>
+                </div>
+                <div class="glass-panel p-10 text-center">
+                    <div class="mono text-purple-500 text-[10px] mb-4 uppercase">Regulation</div>
+                    <h4 class="text-xl font-bold text-white mb-4">Speed Control</h4>
+                    <p class="text-xs text-zinc-500">Unmatched ability for precise RPM and directional changes.</p>
                 </div>
             </div>
         </section>
 
-        <section class="space-y-12">
-            <h3 class="text-3xl font-bold text-slate-900">D.C. vs A.C. Motor Comparison</h3>
-            <p class="text-slate-600">
-                Direct current (d.c.) motors are fast becoming a viable alternative to a.c. motors based on their specific performance characteristics:
-            </p>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="p-8 rounded-xl border border-slate-200 hover:border-blue-400 transition">
-                    <h4 class="text-blue-600 font-bold mb-4 uppercase text-xs">Primary Advantages</h4>
-                    <ul class="text-sm space-y-4 text-slate-600">
-                        <li><b>Higher Efficiency:</b> Better energy-to-work ratios.</li>
-                        <li><b>Lower Weight:</b> Higher power density for similar sizes.</li>
-                        <li><b>Starting Torque:</b> Superior ability to start under heavy loads.</li>
-                        <li><b>Speed Control:</b> Superior ability for applications requiring variable speed.</li>
-                    </ul>
-                </div>
-                <div class="p-8 rounded-xl border border-slate-200 bg-white">
-                    <h4 class="text-slate-400 font-bold mb-4 uppercase text-xs">Brushless Benefits</h4>
-                    <p class="text-xs text-slate-500 mb-6 italic">While generally higher in cost, brushless tech offers:</p>
-                    <ul class="text-sm space-y-3 text-slate-600">
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Lower noise levels</li>
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Less maintenance (no brushes to replace)</li>
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Higher power-to-weight ratio</li>
-                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Easy speed and direction reversal</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-slate-900 rounded-3xl p-12 text-white">
-            <div class="max-w-3xl">
-                <h3 class="text-2xl font-bold mb-6">The Unified Design Principle</h3>
-                <p class="text-slate-400 mb-10">
-                    The design and construction of d.c. motors and generators are essentially the same. Their difference lies in the <b>flow of energy</b>.
-                </p>
-                <div class="grid md:grid-cols-2 gap-12">
+        <section class="mb-32 reveal">
+            <div class="glass-panel p-12 bg-gradient-to-br from-zinc-900 to-black">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
                     <div>
-                        <span class="text-blue-400 font-mono text-[10px] uppercase">Motor Logic</span>
-                        <div class="mt-2 text-lg font-semibold">Electric → Mechanical</div>
-                        <p class="text-xs text-slate-500 mt-2">Current through magnetic fields produces torque.</p>
+                        <span class="step-tag mb-4 inline-block">Advanced Tech</span>
+                        <h2 class="text-4xl font-black text-white uppercase italic mb-6">Brushless <span class="text-purple-500">Evolution</span></h2>
+                        <p class="text-zinc-500 text-sm leading-relaxed mb-8">
+                            Brushless motors have many added benefits. They can be controlled at any speed, easily reversed, have less noise, higher power to weight ratio, higher efficiency and less maintenance.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 border border-white/5 rounded-xl">
+                                <span class="block text-white font-bold text-xs">Noise Level</span>
+                                <span class="text-[10px] text-zinc-600 uppercase">Minimal Friction</span>
+                            </div>
+                            <div class="p-4 border border-white/5 rounded-xl">
+                                <span class="block text-white font-bold text-xs">Efficiency</span>
+                                <span class="text-[10px] text-zinc-600 uppercase">Thermal Optimized</span>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <span class="text-blue-400 font-mono text-[10px] uppercase">Generator Logic</span>
-                        <div class="mt-2 text-lg font-semibold">Mechanical → Electric</div>
-                        <p class="text-xs text-slate-500 mt-2">Rotation through magnetic flux induces EMF.</p>
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-purple-500/10 blur-3xl rounded-full"></div>
+                        <div class="relative bg-black rounded-[2rem] border border-white/10 p-10 text-center">
+                            <span class="text-[9px] mono text-purple-500 block mb-6 uppercase tracking-[0.3em]">[ Brushless Motor Schematic ]</span>
+                            <div class="h-48 w-full bg-zinc-900/50 rounded-xl flex items-center justify-center border border-dashed border-zinc-800 italic text-zinc-700 text-xs">
+                                Image used under license from Shutterstock.com
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="space-y-8">
-            <div class="text-center">
-                <h3 class="text-2xl font-bold text-slate-900 underline decoration-blue-500 underline-offset-8">Operating Foundations</h3>
+        <section class="mb-32 reveal">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black uppercase italic text-white underline decoration-purple-500 underline-offset-8">Operating Principles</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="module-card">
-                    <h4 class="text-slate-900 font-bold mb-4 uppercase text-xs tracking-widest">Motor Force Formula</h4>
-                    <p class="text-xs text-slate-500 mb-6">Determines the mechanical output force.</p>
-                    <div class="formula-box">F = BIl</div>
+                <div class="glass-panel p-12">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-6">Mechanical Force Production</h4>
+                    <p class="text-xs text-zinc-500 mb-8">Calculates the force generated on an armature conductor.</p>
+                    <div class="formula-card text-3xl font-black italic text-purple-500">F = BIl</div>
                 </div>
-                <div class="module-card">
-                    <h4 class="text-slate-900 font-bold mb-4 uppercase text-xs tracking-widest">Induced EMF Formula</h4>
-                    <p class="text-xs text-slate-500 mb-6">Determines the generated voltage.</p>
-                    <div class="formula-box" style="color: #4ade80;">e = Blv</div>
+                <div class="glass-panel p-12">
+                    <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-6">Generated Voltage (EMF)</h4>
+                    <p class="text-xs text-zinc-500 mb-8">Calculates the potential difference induced by rotation.</p>
+                    <div class="formula-card text-3xl font-black italic text-purple-500">e = Blv</div>
                 </div>
             </div>
         </section>
 
-        <section class="pt-20 border-t border-slate-200">
-            <div class="bg-blue-600 rounded-2xl p-10 text-white flex flex-col md:flex-row items-center justify-between gap-8">
-                <div>
-                    <h4 class="text-2xl font-bold mb-2">Conclusion of Topic 1.1</h4>
-                    <p class="text-blue-100 text-sm">You now have a grasp of the basic operating principles and industry context.</p>
+        <section class="reveal">
+            <div class="p-20 bg-purple-600 rounded-[3rem] text-center text-white relative overflow-hidden group">
+                <div class="absolute top-0 right-0 p-10 opacity-10 group-hover:rotate-12 transition-transform duration-700">
+                    <svg class="w-40 h-40" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                 </div>
-                <a href="topic2-construction.html" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-slate-100 transition shadow-lg">Proceed to 1.2 Construction</a>
+                <h2 class="text-5xl font-black uppercase italic mb-6">Principles Mastered.</h2>
+                <p class="text-purple-100 text-sm max-w-xl mx-auto mb-12">
+                    You have completed the introduction to Machine Principles. Ready to dive into the physical components of the stator and rotor?
+                </p>
+                <div class="flex flex-col md:flex-row gap-6 justify-center">
+                    <a href="topic2-construction.html" class="bg-white text-purple-600 px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition-all shadow-2xl">Start Construction Node</a>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-slate-50 border-t border-slate-200 py-20">
-        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+    <footer class="bg-black py-24 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-20">
             <div>
-                <div class="flex items-center gap-2 mb-6">
-                    <div class="w-6 h-6 bg-slate-900 rounded flex items-center justify-center text-white text-[10px] font-bold">A</div>
-                    <span class="font-extrabold text-lg tracking-tight text-slate-900 uppercase">Apprentices Guide</span>
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-6 h-6 bg-purple-500 rounded flex items-center justify-center text-black font-black text-xs">A</div>
+                    <span class="font-black italic text-lg uppercase text-white tracking-tighter">APPRENTICES<span class="text-purple-500">GUIDE</span></span>
                 </div>
-                <p class="text-xs text-slate-400 uppercase tracking-widest leading-loose">
-                    Created by Apprentices, for Apprentices.<br>
-                    South Australian Trade Standards Compliant.
+                <p class="text-[10px] text-zinc-600 uppercase tracking-[0.3em] leading-loose">
+                    Trade school peer support framework.<br>
+                    Rev. 2026.04 // Bordertown SA Node
                 </p>
             </div>
-            <div class="flex flex-col items-end justify-center text-slate-400">
-                <p class="text-[10px] font-mono mb-2 uppercase">Revision 2026.4.1</p>
-                <p class="text-[10px] font-mono uppercase">Unit UEEEL0019 // Bordertown, SA</p>
+            <div class="flex flex-col items-end justify-center">
+                <div class="flex gap-10 text-[9px] mono text-zinc-700 uppercase tracking-widest mb-10">
+                    <span>Uptime: 99.98%</span>
+                    <span>Status: Decrypted</span>
+                </div>
+                <p class="text-[8px] text-zinc-800 uppercase tracking-[0.5em] text-right">
+                    Property of Apprentices Guide &copy; 2026. All Rights Reserved.
+                </p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Simple Intersection Observer for scroll reveals
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 
 </body>
 </html>
