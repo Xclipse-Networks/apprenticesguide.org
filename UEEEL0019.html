@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XCLIPSE | UEEEL0019 - DC Machines Audit</title>
+    <title>XCLIPSE | UEEEL0019 - DC MACHINES AUDIT</title>
+    
+    <script>
+        if (localStorage.getItem('ueeel0019_blocked') === 'true' || localStorage.getItem('ueeel0019_agreed') !== 'true') {
+            window.location.href = "ueeel0019-get-started.html";
+        }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
@@ -12,8 +19,6 @@
             --bg: #030303;
             --card: #0a0a0a;
             --indigo: #6366f1;
-            --success: #10b981;
-            --warning: #f59e0b;
             --zinc-800: #27272a;
         }
 
@@ -25,233 +30,169 @@
             font-family: 'Space Grotesk', sans-serif; 
             background-color: var(--bg); 
             color: #e4e4e7; 
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        .nav-blur {
-            background: rgba(3, 3, 3, 0.85);
-            backdrop-filter: blur(20px);
+        .glass-header {
+            background: rgba(3, 3, 3, 0.8);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .section-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .q-wrapper {
-            padding: 8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-            position: relative;
-        }
-
-        .q-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            font-weight: 800;
-            color: var(--indigo);
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            display: inline-block;
-            margin-bottom: 2rem;
-            padding: 4px 12px;
-            background: rgba(99, 102, 241, 0.05);
-            border-radius: 4px;
-        }
-
-        .pillar-title {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.05em;
-            color: #fff;
-            margin-bottom: 3rem;
-            line-height: 1.1;
         }
 
         .tech-card {
-            background: rgba(255, 255, 255, 0.01);
+            background: var(--card);
             border: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 3rem;
-            border-radius: 2.5rem;
-            margin-top: 2rem;
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
         }
 
-        .formula-box {
+        .tech-card:hover {
+            border-color: var(--indigo);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .formula-display {
             background: #000;
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: 1rem;
             border-left: 3px solid var(--indigo);
             font-family: 'JetBrains Mono', monospace;
             color: var(--indigo);
             font-size: 1.1rem;
-            margin: 2rem 0;
         }
 
-        .status-badge {
-            font-size: 10px;
-            font-weight: 900;
-            padding: 4px 12px;
-            border-radius: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .status-pulse {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse 2s infinite;
         }
 
-        .badge-core { background: rgba(16, 185, 129, 0.1); color: var(--success); }
-        .badge-calc { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
-
-        .diag-frame {
-            width: 100%;
-            background: #000;
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            margin-top: 3rem;
-            padding: 3rem;
-            text-align: center;
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
-<body class="pt-24">
+<body class="pt-24 pb-20">
 
-    <nav class="nav-blur py-6">
-        <div class="section-container flex justify-between items-center">
-            <div class="uppercase font-black text-2xl italic tracking-tighter">XCLIPSE <span class="text-indigo-500 text-base">Machines</span></div>
-            <div class="flex items-center gap-6">
-                <span class="text-[9px] font-black text-zinc-600 uppercase tracking-widest">UEEEL0019 // V5.0</span>
-                <div class="w-8 h-[1px] bg-zinc-800"></div>
-                <span class="text-[9px] font-black text-indigo-400 uppercase tracking-[0.3em]">DC PROBLEM SOLVING</span>
+    <nav class="glass-header fixed top-0 w-full z-50 py-5">
+        <div class="max-w-7xl mx-auto px-8 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <span class="status-pulse"></span>
+                <div class="uppercase font-black text-xl italic tracking-tighter">XCLIPSE <span class="text-indigo-500 text-sm">DC-AUDIT</span></div>
+            </div>
+            <div class="flex items-center gap-8">
+                <span class="text-[9px] font-black text-zinc-600 uppercase tracking-widest">UEEEL0019 // DATA_STREAM_ACTIVE</span>
+                <button onclick="localStorage.removeItem('ueeel0019_agreed'); window.location.reload();" class="text-[9px] font-bold text-zinc-500 hover:text-white border border-white/10 px-4 py-2 rounded-lg transition uppercase tracking-widest">End Session</button>
             </div>
         </div>
     </nav>
 
-    <header class="pt-40 pb-20">
-        <div class="section-container">
-            <h1 class="text-[8vw] font-black leading-[0.85] tracking-tighter uppercase mb-8">DC<br><span class="text-indigo-500 italic">Systems</span></h1>
-            <p class="max-w-xl text-zinc-500 text-sm uppercase tracking-widest leading-loose">
-                Engineering analysis of Direct Current motors and generators. Speed control, efficiency calculations, and fault-finding procedures.
-            </p>
-        </div>
-    </header>
+    <main class="max-w-6xl mx-auto px-8">
+        
+        <header class="mb-20 pt-16">
+            <h1 class="text-7xl font-black tracking-tighter uppercase leading-[0.9]">Machine<br><span class="text-indigo-500 italic">Analysis</span></h1>
+            <p class="mt-6 text-zinc-500 text-[11px] mono uppercase tracking-[0.4em]">Solving Problems in Direct Current (D.C.) Machines // Version 5.0</p>
+        </header>
 
-    <main class="section-container">
-
-        <section class="q-wrapper">
-            <span class="q-tag">Pillar 01 // Physical Architecture</span>
-            <h2 class="pillar-title">Stator, Rotor & Commutation.</h2>
-            <div class="tech-card">
-                <div class="flex justify-between items-center mb-8">
-                    <span class="status-badge badge-core">Core Theory</span>
+        <div class="grid md:grid-cols-12 gap-6">
+            
+            <div class="md:col-span-7 tech-card">
+                <span class="text-[10px] mono text-indigo-500 font-bold uppercase tracking-widest block mb-4">Module 01 // Physical Architecture</span>
+                <h2 class="text-3xl font-bold mb-6 italic">Stator & Rotor Dynamics</h2>
+                <div class="grid grid-cols-2 gap-4 text-xs text-zinc-400">
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                        <b class="text-white block mb-1">Armature Core</b>
+                        Laminated silicon steel to reduce eddy current losses.
+                    </div>
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/5">
+                        <b class="text-white block mb-1">Commutator</b>
+                        Hard-drawn copper segments insulated by mica.
+                    </div>
                 </div>
-                <p class="text-zinc-400 mb-6">Understanding the physical components that enable energy conversion in DC machines.</p>
-                <ul class="space-y-4 text-sm">
-                    <li class="flex gap-4"><span class="text-indigo-500 font-bold">Yoke:</span> The outer frame providing mechanical support and a return path for magnetic flux.</li>
-                    <li class="flex gap-4"><span class="text-indigo-500 font-bold">Armature:</span> The rotating part where EMF is induced (Generator) or torque is produced (Motor).</li>
-                    <li class="flex gap-4"><span class="text-indigo-500 font-bold">Commutator:</span> The mechanical rectifier that converts AC induced in the armature to DC at the brushes.</li>
-                </ul>
-                <div class="diag-frame">
-                    
+                <div class="mt-8 p-6 bg-indigo-500/5 rounded-2xl border border-indigo-500/10">
+                    <p class="text-xs italic leading-relaxed">
+                        "The magnetic neutral axis (MNA) is the position where the armature conductors are moving parallel to the magnetic field, resulting in zero induced EMF and minimal sparking at the brushes."
+                    </p>
                 </div>
             </div>
-        </section>
 
-        <section class="q-wrapper">
-            <span class="q-tag">Pillar 02 // Power Generation</span>
-            <h2 class="pillar-title">Induced EMF & Field Excitation.</h2>
-            <div class="tech-card">
-                <div class="flex justify-between items-center mb-8">
-                    <span class="status-badge badge-calc">Calculations</span>
+            <div class="md:col-span-5 tech-card flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] mono text-indigo-500 font-bold uppercase tracking-widest block mb-4">Module 02 // Core Equations</span>
+                    <h2 class="text-3xl font-bold mb-6 italic">Back-EMF Logic</h2>
                 </div>
-                <p class="text-zinc-400 mb-4">The fundamental equation for generated voltage ($E_g$) in a DC generator:</p>
-                <div class="formula-box">
-                    E_g = (Φ × Z × N × P) / (60 × A)
-                </div>
-                <div class="grid md:grid-cols-2 gap-8 mt-8">
-                    <div class="p-6 bg-white/5 rounded-2xl">
-                        <span class="text-[10px] font-black text-zinc-500 uppercase block mb-2">Self-Excitation</span>
-                        <p class="text-xs text-zinc-400">Relies on residual magnetism in the field poles to initiate voltage buildup.</p>
-                    </div>
-                    <div class="p-6 bg-white/5 rounded-2xl">
-                        <span class="text-[10px] font-black text-zinc-500 uppercase block mb-2">Separate Excitation</span>
-                        <p class="text-xs text-zinc-400">The field winding is supplied by an external DC source for precise control.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="q-wrapper">
-            <span class="q-tag">Pillar 03 // Rotational Force</span>
-            <h2 class="pillar-title">Torque & Back-EMF Logic.</h2>
-            <div class="tech-card">
-                <p class="text-zinc-400 mb-6">In a DC motor, the armature rotates because of the interaction between the field flux and the armature current.</p>
-                <div class="formula-box">
-                    V = E_b + (I_a × R_a)
-                </div>
-                <div class="space-y-6 mt-8">
-                    <div class="flex items-start gap-6 p-6 bg-indigo-500/5 rounded-2xl border border-indigo-500/10">
-                        <div class="text-indigo-500 font-black">!</div>
-                        <p class="text-xs leading-relaxed">
-                            <b class="text-white">Back-EMF ($E_b$):</b> Acts as a "governor" for the motor. It is induced in the armature as it rotates through the field, opposing the supply voltage. As speed increases, $E_b$ increases, reducing current flow.
-                        </p>
-                    </div>
-                    <div class="diag-frame">
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="q-wrapper">
-            <span class="q-tag">Pillar 04 // Operational Control</span>
-            <h2 class="pillar-title">Variation & Regulation.</h2>
-            <div class="tech-card">
-                <div class="grid md:grid-cols-2 gap-10">
-                    <div>
-                        <h4 class="text-white font-bold mb-4">Armature Control</h4>
-                        <p class="text-sm text-zinc-500">Varying the voltage applied to the armature to control speed below base speed. Constant torque characteristic.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-white font-bold mb-4">Field Control</h4>
-                        <p class="text-sm text-zinc-500">Weakening the field flux ($\Phi$) to increase speed above base speed. Constant power characteristic.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="q-wrapper">
-            <span class="q-tag">Pillar 05 // Troubleshooting</span>
-            <h2 class="pillar-title">Practical Diagnosis.</h2>
-            <div class="tech-card">
                 <div class="space-y-4">
-                    <div class="flex justify-between p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <span class="text-sm">Excessive Sparking at Brushes</span>
-                        <span class="text-xs text-red-500 font-bold uppercase">Check MNA / Commutator wear</span>
+                    <div class="formula-display">Eb = V - (Ia * Ra)</div>
+                    <p class="text-[10px] text-zinc-600 mono leading-relaxed uppercase">
+                        Eb = Back-EMF (V)<br>
+                        V = Terminal Voltage (V)<br>
+                        Ia = Armature Current (A)<br>
+                        Ra = Armature Resistance (Ω)
+                    </p>
+                </div>
+            </div>
+
+            <div class="md:col-span-6 tech-card">
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Generator Operation</h3>
+                <p class="text-zinc-500 text-xs mb-6 leading-loose">
+                    In a generator, the mechanical energy is converted to electrical energy. The generated EMF ($E_g$) must overcome the armature resistance to deliver power to the load.
+                </p>
+                <div class="bg-black/50 p-4 rounded-xl border border-white/5 mono text-[11px] text-zinc-300">
+                    Eg = V + (Ia * Ra) + V_brush
+                </div>
+            </div>
+
+            <div class="md:col-span-6 tech-card">
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Motor Dynamics</h3>
+                <p class="text-zinc-500 text-xs mb-6 leading-loose">
+                    A motor draws current to produce torque. The back-EMF ($E_b$) opposes the supply voltage and acts as a regulator for the motor's speed and current draw.
+                </p>
+                <div class="bg-black/50 p-4 rounded-xl border border-white/5 mono text-[11px] text-zinc-300">
+                    Speed (N) ∝ Eb / Φ
+                </div>
+            </div>
+
+            <div class="md:col-span-12 tech-card border-red-500/10 bg-red-500/[0.01]">
+                <h3 class="text-sm font-black uppercase text-red-500 mb-6 tracking-[0.3em]">Critical Fault Analysis</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="border-l-2 border-red-500/30 pl-4">
+                        <span class="text-[10px] font-bold text-zinc-500 uppercase block mb-1">Observation</span>
+                        <p class="text-sm text-white">Heavy Sparking at Brushes</p>
+                        <p class="text-[10px] text-zinc-600 uppercase mt-2">Check: Brush tension / Commutator pitting / MNA Alignment</p>
                     </div>
-                    <div class="flex justify-between p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <span class="text-sm">Motor fails to start (with hum)</span>
-                        <span class="text-xs text-red-500 font-bold uppercase">Check Open Armature / Field Circuit</span>
+                    <div class="border-l-2 border-red-500/30 pl-4">
+                        <span class="text-[10px] font-bold text-zinc-500 uppercase block mb-1">Observation</span>
+                        <p class="text-sm text-white">Motor Runaway (Overspeed)</p>
+                        <p class="text-[10px] text-zinc-600 uppercase mt-2">Check: Field circuit continuity / Loss of excitation</p>
                     </div>
-                    <div class="flex justify-between p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <span class="text-sm">Overheating under normal load</span>
-                        <span class="text-xs text-red-500 font-bold uppercase">Check Shorted Windings / Ventilation</span>
+                    <div class="border-l-2 border-red-500/30 pl-4">
+                        <span class="text-[10px] font-bold text-zinc-500 uppercase block mb-1">Observation</span>
+                        <p class="text-sm text-white">Failure to Self-Excite</p>
+                        <p class="text-[10px] text-zinc-600 uppercase mt-2">Check: Residual magnetism / Field resistance vs Critical resistance</p>
                     </div>
                 </div>
             </div>
-        </section>
+
+        </div>
+
+        <footer class="mt-32 pt-12 border-t border-white/5 flex justify-between items-center">
+            <div class="text-2xl font-black italic tracking-tighter text-white uppercase">XCLIPSE <span class="text-indigo-500">STUDIO</span></div>
+            <div class="text-right">
+                <p class="text-[10px] mono text-zinc-700 uppercase tracking-widest">Apprentice Tech Portal // SA Trade Curriculum</p>
+                <p class="text-[10px] mono text-indigo-900 uppercase font-black">Secure Data Stream: Encrypted</p>
+            </div>
+        </footer>
 
     </main>
-
-    <footer class="py-40 bg-[#050505] border-t border-white/5 mt-20">
-        <div class="section-container text-center">
-            <div class="uppercase font-black text-2xl italic tracking-tighter mb-6">XCLIPSE <span class="text-indigo-500">STUDIO</span></div>
-            <p class="text-[9px] font-black text-zinc-700 uppercase tracking-[0.8em]">Unit 019 Master Audit // 2026.04.19</p>
-        </div>
-    </footer>
 
 </body>
 </html>
