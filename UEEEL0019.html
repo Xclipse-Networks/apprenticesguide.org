@@ -64,9 +64,18 @@
             font-size: 1.1rem;
         }
 
+        .input-dark {
+            background: #000;
+            border: 1px solid #222;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: var(--indigo);
+            width: 100%;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
         .status-pulse {
-            width: 8px;
-            height: 8px;
+            width: 8px; height: 8px;
             background: #10b981;
             border-radius: 50%;
             display: inline-block;
@@ -74,11 +83,7 @@
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
     </style>
 </head>
 <body class="pt-24 pb-20">
@@ -90,7 +95,7 @@
                 <div class="uppercase font-black text-xl italic tracking-tighter">XCLIPSE <span class="text-indigo-500 text-sm">DC-AUDIT</span></div>
             </div>
             <div class="flex items-center gap-8">
-                <span class="text-[9px] font-black text-zinc-600 uppercase tracking-widest">UEEEL0019 // DATA_STREAM_ACTIVE</span>
+                <span class="text-[9px] font-black text-zinc-600 uppercase tracking-widest">STREAM: UEEEL0019_LIVE</span>
                 <button onclick="localStorage.removeItem('ueeel0019_agreed'); window.location.reload();" class="text-[9px] font-bold text-zinc-500 hover:text-white border border-white/10 px-4 py-2 rounded-lg transition uppercase tracking-widest">End Session</button>
             </div>
         </div>
@@ -100,99 +105,123 @@
         
         <header class="mb-20 pt-16">
             <h1 class="text-7xl font-black tracking-tighter uppercase leading-[0.9]">Machine<br><span class="text-indigo-500 italic">Analysis</span></h1>
-            <p class="mt-6 text-zinc-500 text-[11px] mono uppercase tracking-[0.4em]">Solving Problems in Direct Current (D.C.) Machines // Version 5.0</p>
+            <p class="mt-6 text-zinc-500 text-[11px] mono uppercase tracking-[0.4em]">UEEEL0019: Solving D.C. Machine Performance Issues</p>
         </header>
 
         <div class="grid md:grid-cols-12 gap-6">
             
-            <div class="md:col-span-7 tech-card">
-                <span class="text-[10px] mono text-indigo-500 font-bold uppercase tracking-widest block mb-4">Module 01 // Physical Architecture</span>
-                <h2 class="text-3xl font-bold mb-6 italic">Stator & Rotor Dynamics</h2>
-                <div class="grid grid-cols-2 gap-4 text-xs text-zinc-400">
-                    <div class="p-4 bg-white/5 rounded-xl border border-white/5">
-                        <b class="text-white block mb-1">Armature Core</b>
-                        Laminated silicon steel to reduce eddy current losses.
+            <div class="md:col-span-8 tech-card">
+                <span class="text-[10px] mono text-indigo-500 font-bold uppercase tracking-widest block mb-4">Module 01 // Armature Reaction</span>
+                <h2 class="text-3xl font-bold mb-6 italic">Flux Distortion Effects</h2>
+                <div class="grid md:grid-cols-2 gap-6 text-sm">
+                    <div class="text-zinc-400">
+                        <p class="mb-4">Armature reaction occurs when the armature flux distorts and weakens the main field flux ($\Phi$).</p>
+                        <ul class="space-y-2 list-disc pl-4 text-xs">
+                            <li>Shifts the MNA in the direction of rotation (Generators).</li>
+                            <li>Shifts the MNA against the direction of rotation (Motors).</li>
+                            <li>Causes "Cross-Magnetizing" and "De-Magnetizing" effects.</li>
+                        </ul>
                     </div>
-                    <div class="p-4 bg-white/5 rounded-xl border border-white/5">
-                        <b class="text-white block mb-1">Commutator</b>
-                        Hard-drawn copper segments insulated by mica.
+                    <div class="bg-black/40 p-5 rounded-2xl border border-white/5">
+                        <h4 class="text-white text-xs font-bold uppercase mb-3">Countermeasures</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-[10px]">
+                                <span class="text-indigo-400">Interpoles:</span>
+                                <span class="text-zinc-500">Neutralizes reactance voltage</span>
+                            </div>
+                            <div class="flex justify-between text-[10px]">
+                                <span class="text-indigo-400">Comp Winding:</span>
+                                <span class="text-zinc-500">Cancels distortion in stator</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-8 p-6 bg-indigo-500/5 rounded-2xl border border-indigo-500/10">
-                    <p class="text-xs italic leading-relaxed">
-                        "The magnetic neutral axis (MNA) is the position where the armature conductors are moving parallel to the magnetic field, resulting in zero induced EMF and minimal sparking at the brushes."
-                    </p>
                 </div>
             </div>
 
-            <div class="md:col-span-5 tech-card flex flex-col justify-between">
+            <div class="md:col-span-4 tech-card flex flex-col justify-between">
                 <div>
-                    <span class="text-[10px] mono text-indigo-500 font-bold uppercase tracking-widest block mb-4">Module 02 // Core Equations</span>
-                    <h2 class="text-3xl font-bold mb-6 italic">Back-EMF Logic</h2>
+                    <span class="text-[10px] mono text-indigo-500 font-bold uppercase tracking-widest block mb-4">Module 02 // Quick Calc</span>
+                    <h2 class="text-2xl font-bold mb-6 italic">Torque Estimate</h2>
                 </div>
                 <div class="space-y-4">
-                    <div class="formula-display">Eb = V - (Ia * Ra)</div>
-                    <p class="text-[10px] text-zinc-600 mono leading-relaxed uppercase">
-                        Eb = Back-EMF (V)<br>
-                        V = Terminal Voltage (V)<br>
-                        Ia = Armature Current (A)<br>
-                        Ra = Armature Resistance (Ω)
-                    </p>
+                    <div>
+                        <label class="text-[9px] uppercase text-zinc-600 mb-1 block">Current (Ia)</label>
+                        <input type="number" id="calcIa" placeholder="Amps" class="input-dark text-sm">
+                    </div>
+                    <div>
+                        <label class="text-[9px] uppercase text-zinc-600 mb-1 block">Flux (Φ)</label>
+                        <input type="number" id="calcFlux" placeholder="Webers" class="input-dark text-sm">
+                    </div>
+                    <div class="pt-4 border-t border-white/5">
+                        <div class="text-[10px] text-zinc-500 mb-1">Resulting Torque ($T_a$):</div>
+                        <div id="torqueResult" class="text-2xl font-mono font-bold text-white">0.00 Nm</div>
+                    </div>
                 </div>
             </div>
 
             <div class="md:col-span-6 tech-card">
-                <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Generator Operation</h3>
-                <p class="text-zinc-500 text-xs mb-6 leading-loose">
-                    In a generator, the mechanical energy is converted to electrical energy. The generated EMF ($E_g$) must overcome the armature resistance to deliver power to the load.
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Generator Audit</h3>
+                <div class="formula-display mb-6">Eg = V + (Ia * Ra)</div>
+                <p class="text-zinc-500 text-xs leading-loose">
+                    Analysis focus: Determining terminal voltage drop under full load due to armature resistance and brush contact drop ($V_b \approx 2V$).
                 </p>
-                <div class="bg-black/50 p-4 rounded-xl border border-white/5 mono text-[11px] text-zinc-300">
-                    Eg = V + (Ia * Ra) + V_brush
-                </div>
             </div>
 
             <div class="md:col-span-6 tech-card">
-                <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Motor Dynamics</h3>
-                <p class="text-zinc-500 text-xs mb-6 leading-loose">
-                    A motor draws current to produce torque. The back-EMF ($E_b$) opposes the supply voltage and acts as a regulator for the motor's speed and current draw.
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-tighter">Motor Audit</h3>
+                <div class="formula-display mb-6">Eb = V - (Ia * Ra)</div>
+                <p class="text-zinc-500 text-xs leading-loose">
+                    Analysis focus: Back-EMF regulation. If $E_b$ drops, $I_a$ surges to maintain torque, increasing thermal stress on the commutator segments.
                 </p>
-                <div class="bg-black/50 p-4 rounded-xl border border-white/5 mono text-[11px] text-zinc-300">
-                    Speed (N) ∝ Eb / Φ
-                </div>
             </div>
 
             <div class="md:col-span-12 tech-card border-red-500/10 bg-red-500/[0.01]">
-                <h3 class="text-sm font-black uppercase text-red-500 mb-6 tracking-[0.3em]">Critical Fault Analysis</h3>
+                <h3 class="text-sm font-black uppercase text-red-500 mb-6 tracking-[0.3em]">Critical Diagnostics</h3>
                 <div class="grid md:grid-cols-3 gap-6">
                     <div class="border-l-2 border-red-500/30 pl-4">
-                        <span class="text-[10px] font-bold text-zinc-500 uppercase block mb-1">Observation</span>
-                        <p class="text-sm text-white">Heavy Sparking at Brushes</p>
-                        <p class="text-[10px] text-zinc-600 uppercase mt-2">Check: Brush tension / Commutator pitting / MNA Alignment</p>
+                        <p class="text-sm text-white mb-2 italic">Ghost Voltage</p>
+                        <p class="text-[10px] text-zinc-500 leading-relaxed uppercase">Loss of residual magnetism in self-excited shunt generators. Requires "flashing the field."</p>
                     </div>
                     <div class="border-l-2 border-red-500/30 pl-4">
-                        <span class="text-[10px] font-bold text-zinc-500 uppercase block mb-1">Observation</span>
-                        <p class="text-sm text-white">Motor Runaway (Overspeed)</p>
-                        <p class="text-[10px] text-zinc-600 uppercase mt-2">Check: Field circuit continuity / Loss of excitation</p>
+                        <p class="text-sm text-white mb-2 italic">Commutator Bar Blackening</p>
+                        <p class="text-[10px] text-zinc-500 leading-relaxed uppercase">Often caused by open-circuited armature coils or high-resistance solder joints.</p>
                     </div>
                     <div class="border-l-2 border-red-500/30 pl-4">
-                        <span class="text-[10px] font-bold text-zinc-500 uppercase block mb-1">Observation</span>
-                        <p class="text-sm text-white">Failure to Self-Excite</p>
-                        <p class="text-[10px] text-zinc-600 uppercase mt-2">Check: Residual magnetism / Field resistance vs Critical resistance</p>
+                        <p class="text-sm text-white mb-2 italic">Series Motor Runaway</p>
+                        <p class="text-[10px] text-zinc-500 leading-relaxed uppercase">Critical Risk: Operating a series motor with no load ($I_a \approx 0$) leads to infinite speed potential.</p>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <footer class="mt-32 pt-12 border-t border-white/5 flex justify-between items-center">
-            <div class="text-2xl font-black italic tracking-tighter text-white uppercase">XCLIPSE <span class="text-indigo-500">STUDIO</span></div>
+            <div>
+                <div class="text-2xl font-black italic tracking-tighter text-white uppercase mb-1">XCLIPSE <span class="text-indigo-500">STUDIO</span></div>
+                <p class="text-[9px] mono text-zinc-600 uppercase tracking-widest">Bordertown Regional Engineering Node</p>
+            </div>
             <div class="text-right">
-                <p class="text-[10px] mono text-zinc-700 uppercase tracking-widest">Apprentice Tech Portal // SA Trade Curriculum</p>
-                <p class="text-[10px] mono text-indigo-900 uppercase font-black">Secure Data Stream: Encrypted</p>
+                <p class="text-[10px] mono text-zinc-700 uppercase">UEEEL0019 // Ver 5.0.2</p>
+                <p class="text-[9px] mono text-indigo-900 uppercase font-black">Auth: Matutuva, L.</p>
             </div>
         </footer>
-
     </main>
 
+    <script>
+        // Simple Real-time Torque Calculator Logic
+        const calcIa = document.getElementById('calcIa');
+        const calcFlux = document.getElementById('calcFlux');
+        const torqueResult = document.getElementById('torqueResult');
+
+        function updateTorque() {
+            const ia = parseFloat(calcIa.value) || 0;
+            const flux = parseFloat(calcFlux.value) || 0;
+            const k = 0.159; // Constant factor example (Z*P / 2*pi*a)
+            const torque = k * flux * ia;
+            torqueResult.innerText = torque.toFixed(2) + " Nm";
+        }
+
+        calcIa.addEventListener('input', updateTorque);
+        calcFlux.addEventListener('input', updateTorque);
+    </script>
 </body>
 </html>
