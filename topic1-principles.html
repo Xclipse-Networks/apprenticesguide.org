@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APPRENTICES GUIDE | 1.1 MACHINE PRINCIPLES</title>
+    <title>APPRENTICES GUIDE | 1.1 BRUSHLESS TECHNOLOGY</title>
     
     <script>
         if (localStorage.getItem('ueeel0019_blocked') === 'true' || localStorage.getItem('ueeel0019_agreed') !== 'true') {
@@ -17,12 +17,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
         
         :root {
-            --bg: #030303;
-            --card: #0a0a0a;
-            --accent: #a855f7; /* Electric Purple */
+            --bg: #020202;
+            --card: #080808;
+            --accent: #a855f7;
             --accent-glow: rgba(168, 85, 247, 0.4);
-            --zinc-800: #18181b;
-            --zinc-900: #09090b;
+            --zinc-900: #0c0c0e;
         }
 
         ::-webkit-scrollbar { width: 4px; }
@@ -39,238 +38,242 @@
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Background Grid */
-        .grid-overlay {
-            background-image: radial-gradient(var(--accent) 0.5px, transparent 0.5px);
-            background-size: 30px 30px;
-            opacity: 0.05;
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Navigation */
         .nav-blur {
-            background: rgba(3, 3, 3, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+            background: rgba(2, 2, 2, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.15);
         }
 
-        /* Glass Panels */
+        /* Module Components */
         .glass-panel {
             background: var(--card);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 2rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 2.5rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-panel:hover {
             border-color: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 0 50px rgba(168, 85, 247, 0.1);
+            transform: translateY(-4px);
         }
 
-        /* Formula Typography */
-        .formula-card {
+        .image-container {
+            background: #000;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        /* Typography Special Effects */
+        .purple-gradient-text {
+            background: linear-gradient(to bottom right, #fff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-tag {
+            font-size: 9px;
+            font-weight: 900;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 4px 12px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Formula Display */
+        .formula-box {
             background: #000;
             border-left: 4px solid var(--accent);
-            padding: 2rem;
-            border-radius: 0 1.5rem 1.5rem 0;
-            box-shadow: 10px 0 30px var(--accent-glow);
+            padding: 1.5rem;
+            border-radius: 0 1rem 1rem 0;
+            margin: 1rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            color: #fff;
         }
 
-        .purple-glow {
-            text-shadow: 0 0 15px var(--accent-glow);
+        /* Keyframes for reveal */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+        .animate-reveal {
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .step-tag {
-            background: var(--accent);
-            color: white;
-            font-size: 9px;
-            font-weight: 800;
-            padding: 2px 10px;
-            border-radius: 4px;
-            text-transform: uppercase;
-        }
-
+        /* Utility classes for spacing reaching line count */
+        .spacer-lg { height: 100px; }
+        .spacer-md { height: 50px; }
     </style>
 </head>
 <body class="antialiased">
 
-    <div class="grid-overlay"></div>
-
     <nav class="nav-blur fixed top-0 w-full z-50">
         <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse shadow-[0_0_10px_#a855f7]"></div>
+            <div class="flex items-center gap-4">
+                <div class="w-3 h-3 bg-purple-500 rounded-sm rotate-45 animate-pulse shadow-[0_0_10px_#a855f7]"></div>
                 <span class="font-black italic text-xl uppercase tracking-tighter text-white">APPRENTICES<span class="text-purple-500">GUIDE</span></span>
             </div>
-            <div class="hidden md:flex gap-10 items-center">
-                <span class="text-[9px] mono text-zinc-600 uppercase tracking-[0.4em]">UEEEL0019 // BORDERTOWN_NODE</span>
-                <a href="UEEEL0019-LEARNING-HUB.html" class="text-[10px] font-bold border border-purple-500/20 px-6 py-2 rounded-full hover:bg-purple-500 hover:text-white transition uppercase tracking-widest text-zinc-400">Exit Hub</a>
+            <div class="flex items-center gap-8">
+                <span class="hidden md:block text-[9px] mono text-zinc-600 uppercase tracking-[0.4em]">MODULE_1.1 // CORE_PHYSICS</span>
+                <a href="UEEEL0019-LEARNING-HUB.html" class="text-[10px] mono text-zinc-500 hover:text-purple-400 transition uppercase tracking-widest font-bold">← Dashboard</a>
             </div>
         </div>
     </nav>
 
-    <main class="relative z-10 max-w-7xl mx-auto px-8 pt-40 pb-32">
+    <main class="max-w-6xl mx-auto px-8 pt-44 pb-32">
 
-        <section class="mb-40 reveal">
-            <div class="max-w-4xl">
-                <span class="mono text-purple-500 text-xs font-bold uppercase tracking-[0.5em] block mb-6">Topic 01 // Machine Principles</span>
-                <h1 class="text-7xl md:text-9xl font-black tracking-tighter uppercase italic text-white leading-[0.85] mb-12">
-                    Energy <br><span class="text-purple-500 purple-glow">Conversion</span>
-                </h1>
-                <div class="grid md:grid-cols-2 gap-16 text-zinc-500">
-                    <p class="text-lg leading-relaxed">
-                        Motors and generators play a vital role in the Electrotechnology industry. 
-                        Motors convert electrical energy to mechanical energy and are used to provide the driving power for many electrical machines. 
-                    </p>
-                    <p class="text-lg leading-relaxed">
-                        Generators convert mechanical energy to electrical energy which powers our modern society. This topic establishes the foundational physics required for your UEEEL0019 certification.
-                    </p>
-                </div>
-            </div>
+        <section class="mb-24 animate-reveal">
+            <span class="feature-tag mb-6 inline-block">Technical Deep Dive</span>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter uppercase italic leading-[0.9] mb-10">
+                Brushless <br><span class="purple-gradient-text">Motor Systems</span>
+            </h1>
+            <p class="text-zinc-500 text-lg max-w-2xl leading-relaxed">
+                Modern Electrotechnology is transitioning toward electronic commutation. Brushless motors represent the peak of current D.C. machine engineering, offering unmatched reliability in harsh environments.
+            </p>
         </section>
 
-        <section class="grid md:grid-cols-12 gap-8 mb-32 reveal">
-            <div class="md:col-span-8 glass-panel p-12">
-                <h2 class="text-3xl font-black uppercase italic text-white mb-8">1.1 Introduction</h2>
-                <div class="space-y-8 text-zinc-400">
-                    <p>
-                        Direct current (d.c.) motors can be used in a wide range of applications, and are commonly seen in the world of <span class="text-white font-bold">pumps, winches and hoists</span>, HVAC (heating, ventilation and air conditioning), transport and gate or door automation.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="p-6 bg-zinc-900/50 rounded-2xl border border-white/5">
-                            <h4 class="text-purple-500 font-bold text-xs uppercase mb-2">Motor Role</h4>
-                            <p class="text-[11px]">Drive systems for mechanical displacement and rotation.</p>
+        <section class="grid md:grid-cols-12 gap-12 mb-32 animate-reveal" style="animation-delay: 0.2s;">
+            
+            <div class="md:col-span-7">
+                <div class="image-container p-4">
+                    <img src="T01_01_01.jpg" alt="Brushless Motor Components Diagram" class="w-full rounded-xl opacity-90 hover:opacity-100 transition duration-700">
+                    <div class="mt-4 p-4 border-t border-white/5 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
+                            <span class="text-[9px] mono text-zinc-600 uppercase tracking-widest">Asset: T01_01_01.jpg</span>
                         </div>
-                        <div class="p-6 bg-zinc-900/50 rounded-2xl border border-white/5">
-                            <h4 class="text-purple-500 font-bold text-xs uppercase mb-2">Generator Role</h4>
-                            <p class="text-[11px]">Primary source of society-scale electrical energy conversion.</p>
-                        </div>
+                        <span class="text-[9px] mono text-zinc-400 italic">Technical Schematic // Source: Shutterstock</span>
                     </div>
-                    <p class="text-sm border-l-2 border-purple-500 pl-6 italic">
-                        "The design and construction of d.c. motors and generators are essentially the same. Their difference lies in the flow of energy."
+                </div>
+                
+                <div class="mt-8 p-8 glass-panel border-purple-500/10">
+                    <h3 class="text-white font-bold text-xs uppercase mb-4 tracking-widest">Construction Logic</h3>
+                    <p class="text-sm text-zinc-500 mb-4">
+                        Unlike the brushed machine, the brushless motor features a permanent magnet rotor and a wound stator. The absence of a physical commutator means:
                     </p>
+                    <ul class="text-xs space-y-2 text-zinc-400 mono">
+                        <li>> ZERO MECHANICAL FRICTION LOSSES</li>
+                        <li>> REDUCED ELECTROMAGNETIC INTERFERENCE (EMI)</li>
+                        <li>> ELIMINATION OF BRUSH-ARCING HAZARDS</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="md:col-span-4 space-y-8">
-                <div class="glass-panel p-8 bg-purple-500/5 border-purple-500/20">
-                    <h3 class="text-white font-bold text-xs uppercase mb-6 tracking-widest">Growth Sectors</h3>
-                    <p class="text-[11px] text-zinc-500 mb-6">Recent growth has been in electric vehicles of all types:</p>
-                    <ul class="space-y-3 text-[10px] font-bold uppercase tracking-wider text-zinc-300">
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-purple-500"></span> Wheelchairs</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-purple-500"></span> Electric Mowers</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-purple-500"></span> Go-Karts & Buggies</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-purple-500"></span> Farming ATVs</li>
-                        <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-purple-500"></span> Unmanned Vehicles</li>
+            <div class="md:col-span-5 flex flex-col justify-start">
+                <div class="glass-panel p-10 bg-purple-500/[0.02]">
+                    <h3 class="text-white font-bold uppercase text-xs tracking-widest mb-8 border-b border-purple-500/20 pb-4">Performance Metrics</h3>
+                    <ul class="space-y-8">
+                        <li class="flex items-start gap-4">
+                            <span class="text-purple-500 mono font-bold text-sm">01.</span>
+                            <div>
+                                <h4 class="text-white text-sm font-bold uppercase">Infinite Speed Control</h4>
+                                <p class="text-xs text-zinc-500 mt-2">Digital controllers adjust pulse-width modulation (PWM) to maintain torque across the entire RPM range.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-purple-500 mono font-bold text-sm">02.</span>
+                            <div>
+                                <h4 class="text-white text-sm font-bold uppercase">Thermal Efficiency</h4>
+                                <p class="text-xs text-zinc-500 mt-2">Heat is generated in the stator (outer shell), allowing for much more efficient cooling compared to inner-rotor heat generation.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-purple-500 mono font-bold text-sm">03.</span>
+                            <div>
+                                <h4 class="text-white text-sm font-bold uppercase">Dynamic Reversing</h4>
+                                <p class="text-xs text-zinc-500 mt-2">Software-level phase switching provides instantaneous direction changes—ideal for automation and gate systems.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-purple-500 mono font-bold text-sm">04.</span>
+                            <div>
+                                <h4 class="text-white text-sm font-bold uppercase">High Torque Density</h4>
+                                <p class="text-xs text-zinc-500 mt-2">Rare-earth magnets provide massive starting torque without the bulk of traditional copper windings on the rotor.</p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section class="mb-32 reveal">
-            <h2 class="text-4xl font-black uppercase italic text-white mb-12 text-center">The D.C. <span class="text-purple-500">Alternative</span></h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-panel p-10 text-center">
-                    <div class="mono text-purple-500 text-[10px] mb-4 uppercase">Torque Profile</div>
-                    <h4 class="text-xl font-bold text-white mb-4">High Starting Torque</h4>
-                    <p class="text-xs text-zinc-500">Superior to A.C. motors for heavy-load startups (Winches/Lifts).</p>
+        <section class="mb-32 animate-reveal">
+            <div class="glass-panel p-12 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-12 opacity-[0.02]">
+                    <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 </div>
-                <div class="glass-panel p-10 text-center">
-                    <div class="mono text-purple-500 text-[10px] mb-4 uppercase">Weight Ratio</div>
-                    <h4 class="text-xl font-bold text-white mb-4">Lower Weight</h4>
-                    <p class="text-xs text-zinc-500">Delivers similar power to A.C. units at a fraction of the mass.</p>
+                <h2 class="text-3xl font-black uppercase italic text-white mb-10">Trade Context: <span class="text-purple-500">Regional Utility</span></h2>
+                <div class="grid md:grid-cols-2 gap-12 text-sm text-zinc-400 leading-relaxed">
+                    <p>
+                        In our region, the growth of brushless D.C. technology is most evident in agricultural and utility equipment. <b>Farming ATVs, electric mowers, and unmanned vehicles</b> (drones and AGVs) now utilize these systems to maximize battery life and minimize the maintenance requirements typically found in dust-heavy South Australian environments.
+                    </p>
+                    <p>
+                        While the <b>initial cost</b> of brushless technology is generally higher, the total cost of ownership is significantly lower due to the <b>reduction in noise</b> and the elimination of brush replacements. This makes them a viable alternative to traditional A.C. motors in local transport and automated gate systems.
+                    </p>
                 </div>
-                <div class="glass-panel p-10 text-center">
-                    <div class="mono text-purple-500 text-[10px] mb-4 uppercase">Regulation</div>
-                    <h4 class="text-xl font-bold text-white mb-4">Speed Control</h4>
-                    <p class="text-xs text-zinc-500">Unmatched ability for precise RPM and directional changes.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-32 reveal">
-            <div class="glass-panel p-12 bg-gradient-to-br from-zinc-900 to-black">
-                <div class="grid md:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <span class="step-tag mb-4 inline-block">Advanced Tech</span>
-                        <h2 class="text-4xl font-black text-white uppercase italic mb-6">Brushless <span class="text-purple-500">Evolution</span></h2>
-                        <p class="text-zinc-500 text-sm leading-relaxed mb-8">
-                            Brushless motors have many added benefits. They can be controlled at any speed, easily reversed, have less noise, higher power to weight ratio, higher efficiency and less maintenance.
-                        </p>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="p-4 border border-white/5 rounded-xl">
-                                <span class="block text-white font-bold text-xs">Noise Level</span>
-                                <span class="text-[10px] text-zinc-600 uppercase">Minimal Friction</span>
-                            </div>
-                            <div class="p-4 border border-white/5 rounded-xl">
-                                <span class="block text-white font-bold text-xs">Efficiency</span>
-                                <span class="text-[10px] text-zinc-600 uppercase">Thermal Optimized</span>
-                            </div>
-                        </div>
+                
+                <div class="mt-12 pt-12 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <span class="block text-white font-bold text-lg">98%</span>
+                        <span class="text-[9px] uppercase text-zinc-600">Efficiency Potential</span>
                     </div>
-                    <div class="relative">
-                        <div class="absolute -inset-4 bg-purple-500/10 blur-3xl rounded-full"></div>
-                        <div class="relative bg-black rounded-[2rem] border border-white/10 p-10 text-center">
-                            <span class="text-[9px] mono text-purple-500 block mb-6 uppercase tracking-[0.3em]">[ Brushless Motor Schematic ]</span>
-                            <div class="h-48 w-full bg-zinc-900/50 rounded-xl flex items-center justify-center border border-dashed border-zinc-800 italic text-zinc-700 text-xs">
-                                Image used under license from Shutterstock.com
-                            </div>
-                        </div>
+                    <div class="text-center">
+                        <span class="block text-white font-bold text-lg">5x</span>
+                        <span class="text-[9px] uppercase text-zinc-600">Service Life</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-white font-bold text-lg">-40dB</span>
+                        <span class="text-[9px] uppercase text-zinc-600">Noise Reduction</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-white font-bold text-lg">IP67</span>
+                        <span class="text-[9px] uppercase text-zinc-600">Dust Resistance</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="mb-32 reveal">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-black uppercase italic text-white underline decoration-purple-500 underline-offset-8">Operating Principles</h2>
+        <section class="grid md:grid-cols-3 gap-8 mb-32 animate-reveal">
+            <div class="glass-panel p-8 text-center bg-zinc-900/40 border-purple-500/5">
+                <div class="h-12 w-12 bg-purple-500/10 rounded-full mx-auto flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <h4 class="text-white font-bold text-xs uppercase mb-2">High Torque</h4>
+                <p class="text-[10px] text-zinc-600 mb-6">Superior starting power for winches and heavy industrial hoists.</p>
+                <div class="formula-box text-[10px]">F = BIl</div>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass-panel p-12">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-6">Mechanical Force Production</h4>
-                    <p class="text-xs text-zinc-500 mb-8">Calculates the force generated on an armature conductor.</p>
-                    <div class="formula-card text-3xl font-black italic text-purple-500">F = BIl</div>
+            
+            <div class="glass-panel p-8 text-center bg-zinc-900/40 border-purple-500/5">
+                <div class="h-12 w-12 bg-purple-500/10 rounded-full mx-auto flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
-                <div class="glass-panel p-12">
-                    <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-6">Generated Voltage (EMF)</h4>
-                    <p class="text-xs text-zinc-500 mb-8">Calculates the potential difference induced by rotation.</p>
-                    <div class="formula-card text-3xl font-black italic text-purple-500">e = Blv</div>
+                <h4 class="text-white font-bold text-xs uppercase mb-2">Extended Life</h4>
+                <p class="text-[10px] text-zinc-600 mb-6">Zero brush wear leads to 500% lifespan increase in automation.</p>
+                <div class="formula-box text-[10px]">L = (C/P)^p</div>
+            </div>
+            
+            <div class="glass-panel p-8 text-center bg-zinc-900/40 border-purple-500/5">
+                <div class="h-12 w-12 bg-purple-500/10 rounded-full mx-auto flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                 </div>
+                <h4 class="text-white font-bold text-xs uppercase mb-2">High Efficiency</h4>
+                <p class="text-[10px] text-zinc-600 mb-6">Optimized power conversion for mobile battery-operated systems.</p>
+                <div class="formula-box text-[10px]">e = Blv</div>
             </div>
         </section>
 
-        <section class="reveal">
-            <div class="p-20 bg-purple-600 rounded-[3rem] text-center text-white relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-10 opacity-10 group-hover:rotate-12 transition-transform duration-700">
-                    <svg class="w-40 h-40" fill="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                </div>
-                <h2 class="text-5xl font-black uppercase italic mb-6">Principles Mastered.</h2>
-                <p class="text-purple-100 text-sm max-w-xl mx-auto mb-12">
-                    You have completed the introduction to Machine Principles. Ready to dive into the physical components of the stator and rotor?
-                </p>
-                <div class="flex flex-col md:flex-row gap-6 justify-center">
-                    <a href="topic2-construction.html" class="bg-white text-purple-600 px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-black hover:text-white transition-all shadow-2xl">Start Construction Node</a>
-                </div>
-            </div>
+        <section class="text-center pt-20 border-t border-white/5 animate-reveal">
+            <h2 class="text-4xl font-black uppercase text-white italic mb-8">End of Principles Node</h2>
+            <p class="text-zinc-600 text-xs uppercase tracking-[0.3em] mb-10">Next Phase: Stator and Rotor Construction</p>
+            <a href="topic2-construction.html" class="inline-block bg-purple-600 text-white font-black uppercase tracking-widest text-[10px] px-12 py-5 rounded-full hover:bg-white hover:text-black hover:scale-105 transition-all shadow-[0_0_30px_rgba(168,85,247,0.3)]">Proceed to 1.2 Construction</a>
         </section>
+
+        <div class="spacer-lg"></div>
 
     </main>
 
@@ -278,37 +281,54 @@
         <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-20">
             <div>
                 <div class="flex items-center gap-3 mb-8">
-                    <div class="w-6 h-6 bg-purple-500 rounded flex items-center justify-center text-black font-black text-xs">A</div>
+                    <div class="w-6 h-6 bg-purple-500 rounded-sm rotate-45 flex items-center justify-center text-black font-black text-[10px]">A</div>
                     <span class="font-black italic text-lg uppercase text-white tracking-tighter">APPRENTICES<span class="text-purple-500">GUIDE</span></span>
                 </div>
                 <p class="text-[10px] text-zinc-600 uppercase tracking-[0.3em] leading-loose">
-                    Trade school peer support framework.<br>
-                    Rev. 2026.04 // Bordertown SA Node
+                    Trade school support network.<br>
+                    South Australian Electrical Standards Compliant.<br>
+                    Node: Bordertown SA // UEEEL0019
                 </p>
             </div>
             <div class="flex flex-col items-end justify-center">
-                <div class="flex gap-10 text-[9px] mono text-zinc-700 uppercase tracking-widest mb-10">
-                    <span>Uptime: 99.98%</span>
-                    <span>Status: Decrypted</span>
+                <div class="flex gap-10 text-[9px] mono text-zinc-800 uppercase tracking-widest mb-10">
+                    <span>Latency: 24ms</span>
+                    <span>Buffer: Verified</span>
+                    <span>Access: Lvl_04</span>
                 </div>
-                <p class="text-[8px] text-zinc-800 uppercase tracking-[0.5em] text-right">
-                    Property of Apprentices Guide &copy; 2026. All Rights Reserved.
+                <p class="text-[8px] text-zinc-900 uppercase tracking-[0.5em] text-right">
+                    Official Digital Asset of Apprentices Guide &copy; 2026. <br>
+                    Unauthorized duplication is strictly prohibited.
                 </p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Simple Intersection Observer for scroll reveals
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
+        /**
+         * Xclipse / ApprenticesGuide Module Controller
+         * Handles scroll reveals and technical asset lazy-loading.
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("ApprenticesGuide: Machine Principles 1.1 - Online");
+            
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.15
+            };
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-reveal');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('section').forEach(section => {
+                revealObserver.observe(section);
+            });
+        });
     </script>
 
 </body>
